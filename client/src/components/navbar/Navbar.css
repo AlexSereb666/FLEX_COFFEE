@@ -1,0 +1,138 @@
+@font-face {
+  font-family: 'PostalShrift';
+  src: url('../../assets/fonts/PostalShrift.ttf');
+}
+@keyframes swing {
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(2deg);
+  }
+  20% {
+    transform: rotate(-2deg);
+  }
+  30% {
+    transform: rotate(2deg);
+  }
+  40% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+  60% {
+    transform: rotate(-2deg);
+  }
+  70% {
+    transform: rotate(2deg);
+  }
+  80% {
+    transform: rotate(-2deg);
+  }
+  90% {
+    transform: rotate(2deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+.navbar {
+  height: 80px;
+  background-color: #644a353b;
+  width: 100%;
+  box-shadow: 0 10px 20px rgba(114, 60, 27, 0.473);
+}
+.navbar__menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.navbar__left,
+.navbar__right {
+  display: flex;
+  align-items: center;
+}
+.navbar__left {
+  justify-content: flex-start;
+}
+.navbar__right {
+  justify-content: flex-end;
+}
+.navbar__logo {
+  margin: 0 10px;
+}
+.navbar__link {
+  text-decoration: none;
+  color: inherit;
+  font-family: 'PostalShrift';
+  font-size: 30px;
+  position: relative;
+  display: flex;
+  transition: transform 2s ease-in-out;
+}
+.navbar__link:hover {
+  animation: swing 3s ease-in-out infinite;
+}
+.navbar__link::after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-image: url('../../assets/img/navbar-ico.png');
+  background-size: cover;
+  top: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+.navbar__link:hover::after {
+  opacity: 1;
+}
+.navbar__item {
+  margin: 0 20px;
+}
+.navbar__auth {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.navbar__auth-link {
+  margin-left: 10px;
+  font-family: 'PostalShrift';
+  font-size: 12px;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+}
+.navbar__auth-link::after {
+  content: "";
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: -3px;
+  width: 0;
+  height: 2px;
+  background-color: #fff;
+  transition: width 0.5s;
+}
+.navbar__auth-link:hover::after {
+  content: "";
+  width: 100%;
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  height: 2px;
+  background-color: #fff;
+  transition: width 0.5s;
+}
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 80px;
+}
