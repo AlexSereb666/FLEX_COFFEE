@@ -1,0 +1,22 @@
+@font-face {
+  font-family: 'arnamu';
+  src: url('../../assets/fonts/arnamu.ttf');
+}
+.custom-button {
+  width: 100%;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007BFF;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-family: 'arnamu', fallback-fonts;
+}
+.custom-button:hover {
+  background-color: #0056b3;
+}
+.custom-button:active {
+  background-color: #004085;
+}

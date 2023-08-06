@@ -1,0 +1,29 @@
+@import '../../utils/colors';
+@import '../../utils/fonts';
+
+@font-face {
+    font-family: 'arnamu';
+    src: url('../../assets/fonts/arnamu.ttf'); 
+}  
+
+.custom-button {
+    width           : 100%;
+    padding         : 10px 20px;
+    border          : none;
+    border-radius   : 5px;
+    background-color: @btn-form-static;
+    color           : white;
+    font-size       : @font-size-btn-form;
+    cursor          : pointer;
+    transition      : background-color 0.2s ease;
+    font-family     : 'arnamu', fallback-fonts;
+  }
+  
+  .custom-button:hover {
+    background-color: @btn-form-hover;
+  }
+  
+  .custom-button:active {
+    background-color: @btn-form-active;
+  }
+  

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import InputAuth from '../../utils/input-auth/InputAuth';
 import ToggleCheckbox from '../../utils/toggle-Checkbox/ToggleCheckbox';
+import Button from '../../utils/btn-form/BtnForm';
 import './Authorization.css';
 
 function Authorization() {
@@ -49,6 +50,9 @@ function Authorization() {
                     label="Запомнить меня" 
                     isChecked={isCheckedSave} 
                     onToggle={() => setIsCheckedSave(!isCheckedSave)} 
+                />
+                <Button
+                    text={'Войти в аккаунт'}
                 />
             </div>
         </div>
