@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import InputAuth from '../../utils/input-auth/InputAuth';
+import ToggleCheckbox from '../../utils/toggle-Checkbox/ToggleCheckbox';
 import './Authorization.css';
 
 function Authorization() {
     const navigate = useNavigate();
     const [isClosing, setIsClosing] = useState(false);
+
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+
+    const [isCheckedPass, setIsCheckedPass] = useState(false)
+    const [isCheckedSave, setIsCheckedSave] = useState(false)
 
     const handleClose = () => {
         setIsClosing(true);
@@ -15,7 +23,33 @@ function Authorization() {
         <div className='authorization'>
             <div className={`authorization__content ${isClosing ? 'closing' : ''}`}>
                 <button className='authorization__close-btn' onClick={handleClose}>X</button>
-                <h2>Авторизация</h2>
+                <h3>Авторизация</h3>
+                <InputAuth 
+                    value={email} 
+                    setValue={setEmail} 
+                    type="text" 
+                    required={true} 
+                    label={'Email address'}
+                    maxLength={45}
+                />
+                <InputAuth
+                    value={password} 
+                    setValue={setPassword} 
+                    type="password" 
+                    required={true} 
+                    label={'Password'}
+                    maxLength={45}
+                />
+                <ToggleCheckbox 
+                    label="Показать пароль" 
+                    isChecked={isCheckedPass} 
+                    onToggle={() => setIsCheckedPass(!isCheckedPass)} 
+                />
+                <ToggleCheckbox 
+                    label="Запомнить меня" 
+                    isChecked={isCheckedSave} 
+                    onToggle={() => setIsCheckedSave(!isCheckedSave)} 
+                />
             </div>
         </div>
     )

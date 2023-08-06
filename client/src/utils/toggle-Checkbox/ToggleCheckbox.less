@@ -1,0 +1,64 @@
+@import '../../utils/colors';
+@import '../../utils/fonts';
+
+@font-face {
+    font-family: 'better-vcr_0';
+    src: url('../../assets/fonts/better-vcr_0.ttf'); 
+}  
+
+.toggle-checkbox {
+    display      : flex;
+    align-items  : center;
+    margin-bottom: 15px;
+
+    &__label {
+        position      : relative;
+        display       : inline-block;
+        width         : 50px;
+        height        : 24px;
+        margin-right  : 10px;
+        cursor: pointer;
+    }
+
+    &__input {
+        display: none;
+    }
+
+    &__slider {
+        position        : absolute;
+        top             : 0;
+        left            : 0;
+        right           : 0;
+        bottom          : 0;
+        background-color: @checkBox-background;
+        border-radius   : 34px;
+        transition      : 0.4s;
+    }
+
+    &__slider:before {
+        position        : absolute;
+        content         : "";
+        height          : 16px;
+        width           : 16px;
+        left            : 4px;
+        bottom          : 4px;
+        background-color: @checkBox-slider;
+        border-radius   : 50%;
+        transition      : 0.4s;
+    }
+
+    &__input:checked + .toggle-checkbox__slider {
+        background-color: @checkBox-active;
+    }
+
+    &__input:checked + .toggle-checkbox__slider:before {
+        transform: translateX(26px);
+    }
+
+    &__text {
+        font-size     : @font-size-checkBox;
+        pointer-events: none;
+        user-select   : none;
+        font-family   : 'better-vcr_0', fallback-fonts; 
+    }
+}
