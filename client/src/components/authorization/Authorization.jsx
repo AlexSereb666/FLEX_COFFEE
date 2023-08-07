@@ -54,6 +54,11 @@ function Authorization() {
                 <Button
                     text={'Войти в аккаунт'}
                 />
+                <div className='authorization__register'>
+                    <p>Нет аккаунта?&nbsp;
+                        <span onClick={() => navigate('/register')}>Зарегистрироваться</span>
+                    </p>
+                </div>
             </div>
         </div>
     )

@@ -2,6 +2,10 @@
   font-family: 'PostalShrift';
   src: url('../../assets/fonts/PostalShrift.ttf');
 }
+@font-face {
+  font-family: 'better-vcr_0';
+  src: url('../../assets/fonts/better-vcr_0.ttf');
+}
 .authorization {
   position: fixed;
   top: 0;
@@ -51,6 +55,21 @@
   to {
     transform: scale(0.1);
   }
+}
+.authorization__register {
+  margin-top: 20px;
+  text-align: center;
+  font-family: 'better-vcr_0', fallback-fonts;
+  font-size: 12px;
+  pointer-events: none;
+  user-select: none;
+}
+.authorization__register span {
+  color: #ccc;
+  cursor: pointer;
+  text-decoration: underline;
+  pointer-events: all;
+  user-select: all;
 }
 h3 {
   font-size: 24px;

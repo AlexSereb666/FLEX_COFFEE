@@ -6,6 +6,11 @@
   src: url('../../assets/fonts/PostalShrift.ttf'); 
 }  
 
+@font-face {
+  font-family: 'better-vcr_0';
+  src: url('../../assets/fonts/better-vcr_0.ttf'); 
+} 
+
 .authorization {
     position        : fixed;
     top             : 0;
@@ -61,6 +66,23 @@
         to {
           transform: scale(0.1);
         }
+    }
+
+    &__register {
+      margin-top    : 20px;
+      text-align    : center;
+      font-family   : 'better-vcr_0', fallback-fonts;
+      font-size     : @font-size-checkBox;
+      pointer-events: none;
+      user-select   : none;
+    }
+
+    &__register span {
+      color          : @checkBox-background;
+      cursor         : pointer;
+      text-decoration: underline;
+      pointer-events : all;
+      user-select    : all;
     }
 }
 
