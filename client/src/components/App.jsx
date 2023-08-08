@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './navbar/Navbar'
 import Auth from './authorization/Authorization'
+import MainPage from '../components/pages/main/Main';
 import './App.css'
 
 function App() {
@@ -11,9 +12,8 @@ function App() {
         <header className="App-header">
           <Navbar />
         </header>
-
         <Routes>
-          <Route path="/" element={<h1>Нажат логотип</h1>} />
+          <Route path="/" element={<MainPage/>} />
           <Route path="/login" element={<Auth/>} />
           <Route path="/registration" element={<h1>Регистрация</h1>} />
         </Routes>
