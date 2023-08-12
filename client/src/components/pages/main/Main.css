@@ -22,6 +22,7 @@
   justify-content: flex-end;
   align-items: center;
   gap: 50px;
+  padding: 40px 0;
 }
 .main-page__info-item {
   display: flex;
@@ -54,57 +55,83 @@
   font-size: 20px;
   font-family: 'arnamu', fallback-fonts;
 }
-.main-page__header {
-  margin-top: 20px;
-  text-align: right;
+.main-page__white-fade {
+  height: 8px;
+  width: 100%;
+  background: linear-gradient(to right, transparent, #E9BEA5);
+  align-self: center;
+  border-radius: 100%;
+  animation: zoom 0.5s ease-out;
 }
-/*
-@keyframes animateWords {
-    0% {
-        transform: translateY(0%);
-    }
-
-    25% {
-        transform: translateY(-100%);
-    }
-
-    50% {
-        transform: translateY(-200%);
-    }
-
-    75% {
-        transform: translateY(-300%);
-    }
-
-    100% {
-        transform: translateY(-400%);
-    }
+.main-page__best {
+  font-family: 'arnamu', fallback-fonts;
+  font-size: 114px;
+  color: #E9BEA5;
+  font-weight: bold;
+  text-align: left;
+  letter-spacing: 8px;
+  pointer-events: none;
+  user-select: none;
 }
-
-h1 {
-    font-size: @font-size-love-text;
-    pointer-events: none;
-    user-select   : none;
-    > span {
-        position: relative;
-        display: inline-block;
-        color: #FF3C41;
-        height: 1.3em;
-        vertical-align: bottom;
-        overflow: hidden;
-        span {
-            display: block;
-            animation: animateWords 5s infinite ease;
-        }
-    }
+.main-page__coffee {
+  font-family: 'arnamu', fallback-fonts;
+  font-size: 54px;
+  color: #BE815F;
+  text-align: left;
+  padding-left: 80px;
+  margin-top: 15px;
+  letter-spacing: 8px;
+  pointer-events: none;
+  user-select: none;
 }
-
-<div className='main-page__header'>
-    <h1>Все что тебе нужно это&nbsp;
-        <span>
-        <span>Любовь</span><span>Кофе</span>
-        <span>Любовь</span><span>Кофе</span>
-        </span> 
-    </h1>
-</div>
-*/
+.main-page__description {
+  font-family: 'arnamu', fallback-fonts;
+  font-size: 24px;
+  color: #ccc;
+  margin-top: 35px;
+  padding-left: 40px;
+  letter-spacing: 1px;
+  line-height: 38px;
+  text-align: left;
+  pointer-events: none;
+  user-select: none;
+}
+.main-page__titles {
+  align-self: flex-start;
+  width: 100%;
+  padding: 90px 0;
+  animation: zoom 0.5s ease-out;
+  position: relative;
+}
+.main-page__buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 60px;
+  margin-right: 80px;
+  margin-top: 60px;
+}
+.main-page__coffee-beans {
+  position: absolute;
+  right: -15px;
+  top: 35%;
+  transform: translateY(-70%);
+}
+.main-page__coffee-beans img {
+  width: 270px;
+  opacity: 0.3;
+  pointer-events: none;
+  user-select: none;
+  filter: brightness(100);
+}
+.social-network + .social-network {
+  margin-left: -30px;
+}
+@keyframes zoom {
+  from {
+    transform: scale(0.1);
+  }
+  to {
+    transform: scale(1);
+  }
+}

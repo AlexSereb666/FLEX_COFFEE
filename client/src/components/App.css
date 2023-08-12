@@ -6,7 +6,7 @@
 }
 body {
   background-color: #d5921a;
-  background-image: url('../assets/img/background-image.png');
+  background-image: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.7)), url('../assets/img/background-image.png');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;

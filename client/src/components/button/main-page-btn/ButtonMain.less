@@ -1,0 +1,31 @@
+@import '../../../utils/colors';
+@import '../../../utils/fonts';
+
+@font-face {
+    font-family: 'arnamu';
+    src: url('../../../assets/fonts/arnamu.ttf'); 
+}  
+
+.btn-main {
+    padding         : 20px 45px;
+    font-size       : @font-size-main-page-btn;
+    font-family     : 'arnamu', fallback-fonts;
+    letter-spacing  : 2px;
+    color           : @font-color-basic;
+    background-color: @main-page-btn-background;
+    border-radius   : 35px;
+    border          : none;
+    cursor          : pointer;
+    box-shadow      : 0 0 0 0 transparent;
+    transition      : background-color 0.3s ease, box-shadow 0.3s ease;
+  
+    &:hover {
+      background-color: @main-page-btn-hover;
+      box-shadow      : 0 0 20px 5px @main-page-btn-shadow;
+    }
+  
+    &:active {
+      background-color: @main-page-btn-active;
+    }
+}
+  
