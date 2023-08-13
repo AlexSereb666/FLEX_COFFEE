@@ -1,0 +1,94 @@
+@import '../../../utils/colors';
+@import '../../../utils/fonts';
+@import '../../../utils/image';
+
+@font-face {
+    font-family: 'PostalShrift';
+    src: url('../../../assets/fonts/PostalShrift.ttf'); 
+} 
+
+@font-face {
+    font-family: 'arnamu';
+    src: url('../../../assets/fonts/arnamu.ttf'); 
+} 
+
+@font-face {
+    font-family: 'better-vcr_0';
+    src: url('../../../assets/fonts/better-vcr_0.ttf'); 
+  } 
+
+
+.main-contacts {
+    display       : flex;
+    padding       : 80px 100px;
+    flex-direction: row-reverse;
+
+    &__contact-header {
+        text-align    : left;
+        padding       : 40px 0;
+        color         : @main-page-title-two;
+        font-family   : 'PostalShrift';
+        font-size     : @font-size-love-text ;
+        pointer-events: none;
+        user-select   : none;
+    }
+
+    &__right-section {
+        padding        : 0 100px;
+        display        : flex;
+        flex-direction : column;
+        justify-content: space-between;
+    }
+
+    &__contact-subsection {
+        padding       : 30px 0;
+        pointer-events: none;
+        user-select   : none;
+    }
+
+    &__contact-subsection h3 {
+        font-size     : @font-size-h3-item;
+        padding-bottom: 10px;
+        font-family   : 'better-vcr_0';
+        color         : @main-page-text;
+    }
+
+    &__white-fade {
+        height       : 5px;
+        width        : 100%;
+        background   : linear-gradient(to right, @main-page-title-two, transparent);
+        align-self   : center;
+        border-radius: 100%;
+    }
+
+    &__contact-subsection p {
+        padding     : 10px 0;
+        font-family : 'arnamu';
+        font-size   : @font-size-main-page-desc;
+        color       : @checkBox-background;
+    }
+
+    &__best-coffee {
+        position : absolute;
+        right    : 10px;
+        top      : 80%;
+        transform: translateY(-70%);
+    }
+
+    &__best-coffee img {
+        width         : 500px;
+        opacity       : 0.2;  
+        pointer-events: none;
+        user-select   : none;
+    }
+}
+  
+
+
+
+  .left-section {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  

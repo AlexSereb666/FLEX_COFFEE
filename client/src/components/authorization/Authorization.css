@@ -71,13 +71,13 @@
   pointer-events: all;
   user-select: all;
 }
-h3 {
+.title {
   font-size: 24px;
   font-family: 'PostalShrift', fallback-fonts;
   padding-bottom: 30px;
   position: relative;
 }
-h3::after {
+.title::after {
   content: "";
   display: block;
   height: 3px;

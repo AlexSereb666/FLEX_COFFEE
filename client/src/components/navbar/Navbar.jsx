@@ -19,7 +19,7 @@ function Navbar() {
             <div className="navbar__right">
               <div className="navbar__item"><Link to="/" className="navbar__link">Заказы</Link></div>
               <div className="navbar__item"><Link to="/" className="navbar__link">О нас</Link></div>
-              <div className="navbar__item"><Link to="/" className="navbar__link">Контакты</Link></div>
+              <div className="navbar__item"><Link to="/contacts" className="navbar__link">Контакты</Link></div>
             </div>
         </div>
         <div className='navbar__auth'>

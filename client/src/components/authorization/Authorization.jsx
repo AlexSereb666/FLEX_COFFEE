@@ -24,7 +24,7 @@ function Authorization() {
         <div className='authorization'>
             <div className={`authorization__content ${isClosing ? 'closing' : ''}`}>
                 <button className='authorization__close-btn' onClick={handleClose}>X</button>
-                <h3>Авторизация</h3>
+                <h3 className='title'>Авторизация</h3>
                 <InputAuth 
                     value={email} 
                     setValue={setEmail} 
