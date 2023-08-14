@@ -1,11 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Contacts.css';
 import BestCoffeeImg from '../../../assets/img/best-coffee.png';
 
 function Contacts() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [emailValid, setEmailValid] = useState(true);
+  const [nameValid, setNameValid] = useState(true);
+  const [messageValid, setMessageValid] = useState(true);
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    setEmailValid(emailRegex.test(e.target.value));
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const isNameValid = name.trim() !== '';
+    const isMessageValid = message.trim() !== '';
+
+    setNameValid(isNameValid);
+    setMessageValid(isMessageValid);
+
+    if (isNameValid && emailValid && isMessageValid) {
+      console.log({ name, email, message });
+    }
+  }
+
   return (
     <div className="main-contacts">
-      
+
       <div className="main-contacts__right-section">
         <div className="main-contacts__contact-header">СВЯЖИТЕСЬ С НАМИ</div>
         <div className="main-contacts__contact-subsection">
@@ -30,8 +57,36 @@ function Contacts() {
         </div>
       </div>
 
-      <div className="left-section">
-        {/* левая часть */}
+      <div className="main-contacts__left-section">
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Имя"
+            value={name}
+            onChange={(e) => {
+              setName(e.target.value);
+              setNameValid(true);
+            }}
+            style={{ borderColor: nameValid ? 'initial' : 'red' }}
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={handleEmailChange}
+            style={{ borderColor: emailValid ? 'initial' : 'red' }}
+          />
+          <textarea
+            placeholder="Ваше сообщение"
+            value={message}
+            onChange={(e) => {
+              setMessage(e.target.value);
+              setMessageValid(true);
+            }}
+            style={{ borderColor: messageValid ? 'initial' : 'red' }}
+          />
+          <button type="submit">Отправить письмо</button>
+        </form>
       </div>
 
     </div>
