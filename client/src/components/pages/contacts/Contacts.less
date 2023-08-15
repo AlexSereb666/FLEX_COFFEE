@@ -17,7 +17,6 @@
   src: url('../../../assets/fonts/better-vcr_0.ttf'); 
 } 
 
-
 .main-contacts {
   display       : flex;
   padding       : 80px 100px;
@@ -38,6 +37,7 @@
     display        : flex;
     flex-direction : column;
     justify-content: space-between;
+    animation      : zoom 0.5s ease-out;
   }
 
   &__contact-subsection {
@@ -81,59 +81,71 @@
     pointer-events: none;
     user-select   : none;
   }
-
-
-
-
-
-
-  
-
   &__left-section {
-    flex: 1;
-    padding: 50px 50px;
+    flex            : 1;
+    padding         : 50px 50px;
     background-color: rgba(0, 0, 0, 0.3);
+    box-shadow      : 0 0 50px rgba(255, 255, 255, 0.3);
+    border-radius   : 3%;
+    animation       : zoom 0.5s ease-out;
   }
 
   &__left-section form {
-    display: flex;
+    display       : flex;
     flex-direction: column;
-    gap: 35px;
+    gap           : 35px;
   }
 
   &__left-section input, .left-section textarea {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 24px;
-    outline: none;
-    transition: border-color 0.3s ease;
-    background-color: rgba(0, 0, 0, 0.3);
+    padding         : 10px;
+    border          : 2px solid @checkBox-background;
+    border-radius   : 5px;
+    font-size       : @font-size-contacts-page;
+    outline         : none;
+    transition      : border-color 0.3s ease;
+    background-color: rgba(0, 0, 0, 0.5);
   }
 
   &__left-section textarea {
-    height: 320px;
-    font-size: 24px;
-    resize: none;
-    background-color: rgba(0, 0, 0, 0.3);
+    height          : 320px;
+    font-size       : @font-size-contacts-page;
+    resize          : none;
+    border          : 2px solid @checkBox-background;
+    background-color: rgba(0, 0, 0, 0.5);
   }
 
   &__left-section input:focus, .left-section textarea:focus {
-    border-color: #007BFF;
+    border-color: @main-page-btn-active;
   }
 
   &__left-section button {
-    padding: 10px 20px;
-    background-color: #007BFF;
-    font-size: 24px;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    padding         : 10px 20px;
+    background-color: @main-page-btn-background;
+    font-size       : @font-size-contacts-page;
+    color           : @font-color-basic;
+    border          : none;
+    border-radius   : 5px;
+    cursor          : pointer;
+    transition      : background-color 0.3s ease;
+    font-family     : 'arnamu', fallback-fonts;
   }
 
   &__left-section button:hover {
-    background-color: #0056b3;
+    background-color: @main-page-btn-hover;
+    box-shadow      : 0 0 20px 5px @main-page-btn-shadow;
+  }
+
+  &__left-section button:active {
+    background-color: @main-page-btn-active; 
+  }
+}
+
+@keyframes zoom {
+  from {
+    transform: scale(0.1);
+  }
+
+  to {
+    transform: scale(1);
   }
 }

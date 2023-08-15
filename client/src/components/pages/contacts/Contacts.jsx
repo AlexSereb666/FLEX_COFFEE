@@ -13,21 +13,23 @@ function Contacts() {
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-    setEmailValid(emailRegex.test(e.target.value));
+    setEmailValid(emailRegex.test(e.target.value) && e.target.value.trim() !== '');
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const isNameValid = name.trim() !== '';
+    const isEmailValid = emailValid && email.trim() !== '';
     const isMessageValid = message.trim() !== '';
 
     setNameValid(isNameValid);
+    setEmailValid(isEmailValid);
     setMessageValid(isMessageValid);
 
-    if (isNameValid && emailValid && isMessageValid) {
+    if (isNameValid && isEmailValid && isMessageValid) {
       console.log({ name, email, message });
-    }
+    } 
   }
 
   return (
@@ -56,7 +58,6 @@ function Contacts() {
           <p>Сб-Вс: 10:00 - 24:00</p>
         </div>
       </div>
-
       <div className="main-contacts__left-section">
         <form onSubmit={handleSubmit}>
           <input
@@ -88,7 +89,6 @@ function Contacts() {
           <button type="submit">Отправить письмо</button>
         </form>
       </div>
-
     </div>
   );
 }

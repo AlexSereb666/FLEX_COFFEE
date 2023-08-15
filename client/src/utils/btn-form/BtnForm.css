@@ -7,16 +7,17 @@
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
-  background-color: #007BFF;
-  color: white;
+  background-color: #995f40;
+  color: #f9f4e6;
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.2s ease;
   font-family: 'arnamu', fallback-fonts;
 }
 .custom-button:hover {
-  background-color: #0056b3;
+  background-color: #855034;
+  box-shadow: 0 0 20px 5px #e9bea5a1;
 }
 .custom-button:active {
-  background-color: #004085;
+  background-color: #64371f;
 }
