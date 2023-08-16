@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'arnamu';
-  src: url('../../assets/fonts/arnamu.ttf');
+  src: url('../../../assets/fonts/arnamu.ttf');
 }
 .custom-button {
   width: 100%;

@@ -9,7 +9,7 @@ function Navbar() {
       <div className='container'>
         <div className='navbar__menu'>
           <div className="navbar__left">
-              <div className="navbar__item"><Link to="/" className="navbar__link">Кофейни</Link></div>
+              <div className="navbar__item"><Link to="/coffeehouses" className="navbar__link">Кофейни</Link></div>
               <div className="navbar__item"><Link to="/" className="navbar__link">Отзывы</Link></div>
               <div className="navbar__item"><Link to="/" className="navbar__link">Меню</Link></div>
             </div>

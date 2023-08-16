@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import InputAuth from '../../utils/input-auth/InputAuth';
 import ToggleCheckbox from '../../utils/toggle-Checkbox/ToggleCheckbox';
-import Button from '../../utils/btn-form/BtnForm';
+import Button from '../../utils/button/btn-form/BtnForm';
 import './Authorization.css';
 
 function Authorization() {

@@ -4,6 +4,7 @@ import Navbar from './navbar/Navbar'
 import Auth from './authorization/Authorization'
 import MainPage from '../components/pages/main/Main';
 import ContactsPage from '../components/pages/contacts/Contacts';
+import CoffeeHouses from '../components/pages/coffeeHouses/CoffeeHouses';
 import './App.css'
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={<MainPage/>} />
           <Route path="/login" element={<Auth/>} />
           <Route path="/contacts" element={<ContactsPage/>} />
+          <Route path='/coffeehouses' element={<CoffeeHouses/>} />
           <Route path="/registration" element={<h1>Регистрация</h1>} />
         </Routes>
 
