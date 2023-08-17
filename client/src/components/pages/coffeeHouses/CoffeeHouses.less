@@ -1,0 +1,127 @@
+@import '../../../utils/colors';
+@import '../../../utils/fonts';
+
+@font-face {
+    font-family: 'PostalShrift';
+    src: url('../../../assets/fonts/PostalShrift.ttf'); 
+} 
+
+@font-face {
+    font-family: 'arnamu';
+    src: url('../../../assets/fonts/arnamu.ttf'); 
+}   
+
+.coffee-houses {
+    display        : flex;
+    flex-direction : row;
+    align-items    : center;
+    justify-content: center;
+    padding        : 120px 0;
+    gap            : 20px;
+
+    &__houses {
+        width: 330px; 
+        height: 630px;
+        background-color: #333;
+        border-radius: 5px;
+        overflow: hidden;
+        position: relative;
+        box-shadow      : 0 0 20px 5px @main-page-title-two ;
+    }
+
+    &__houses img {
+        width: 1200px;
+        height: auto;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); 
+        transition: width 0.3s ease, filter 0.3s ease;  /* Добавьте это для плавного перехода */
+    }
+    
+    &__houses:hover img {
+        width: 1400px;
+        filter: brightness(0.4);  /* Сделает изображение немного темнее */
+    }
+    
+}
+  
+.house-wrapper {
+    position: relative;
+    display: inline-block;
+    animation-name: dropDown;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
+
+    &:nth-child(1) {
+        animation-duration: 0.8s;
+    }
+
+    &:nth-child(2) {
+        animation-duration: 1s;
+    }
+
+    &:nth-child(3) {
+        animation-duration: 1.2s;
+    }
+
+    &:nth-child(4) {
+        animation-duration: 1.4s; 
+    }
+}
+
+.chain-left, 
+.chain-right {
+    position: absolute;
+    width: 30px; 
+    top: -15px;
+}
+
+.chain-left {
+    left: 35px;
+    transform: translateY(-35%); /* Это двигает изображение цепи выше, чтобы оно не заходило под прямоугольник */
+}
+
+.chain-right {
+    right: 35px;
+    transform: translateY(-35%);
+}
+
+
+@keyframes dropDown {
+    from {
+        transform: translateY(-100vh);  /* Начнем с позиции выше видимой области */
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.house-info {
+    position: absolute;
+    bottom: 25%;  /* Позиция чуть ниже середины */
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;  /* По умолчанию текст скрыт */
+    transition: opacity 0.3s ease; /* Плавное появление */
+    text-align: center;
+}
+
+.house-wrapper:hover .house-info {
+    opacity: 1;  /* При наведении текст появляется */
+}
+
+.house-info h3 {
+    color: @main-page-title-two;
+    font-size: @font-size-coffee-card-title;
+    margin-bottom: 10px;
+    font-family : 'PostalShrift';
+}
+
+.house-info p {
+    color: @font-color-basic;
+    font-size: @font-size-coffee-card-desc;
+    font-family : 'arnamu';
+}
