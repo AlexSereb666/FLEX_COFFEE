@@ -1,5 +1,6 @@
 @import '../../utils/colors';
 @import '../../utils/fonts';
+@import '../../utils/animations';
 
 @font-face {
     font-family: 'arnamu';
@@ -42,24 +43,5 @@
         font-size     : @font-size-main-text;
         font-family   : 'arnamu', fallback-fonts;
         animation     : zoom 0.5s ease-out;
-    }
-}
-
-@keyframes spinXAnimation {
-    0% {
-      transform: rotateX(0deg);
-    }
-    100% {
-      transform: rotateX(360deg);
-    }
-}
-  
-@keyframes zoom {
-    from {
-      transform: scale(0.1);
-    }
-  
-    to {
-      transform: scale(1);
     }
 }

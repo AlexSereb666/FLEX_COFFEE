@@ -1,5 +1,6 @@
 @import '../../utils/colors';
 @import '../../utils/fonts';
+@import '../../utils/animations';
 
 @font-face {
   font-family: 'PostalShrift';
@@ -46,26 +47,6 @@
         font-size : 20px;
         color     : @font-color-basic;
         z-index   : 10;
-    }
-
-    @keyframes authZoomIn {
-        from {
-          transform: scale(0.1);
-        }
-      
-        to {
-          transform: scale(1);
-        }
-    }
-      
-      @keyframes authZoomOut {
-        from {
-          transform: scale(1);
-        }
-      
-        to {
-          transform: scale(0.1);
-        }
     }
 
     &__register {

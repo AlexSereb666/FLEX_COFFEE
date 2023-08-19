@@ -1,3 +1,45 @@
+@keyframes dropDown {
+  from {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes authZoomIn {
+  from {
+    transform: scale(0.1);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes authZoomOut {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0.1);
+  }
+}
+@keyframes spinXAnimation {
+  0% {
+    transform: rotateX(0deg);
+  }
+  100% {
+    transform: rotateX(360deg);
+  }
+}
+@keyframes zoom {
+  from {
+    transform: scale(0.1);
+  }
+  to {
+    transform: scale(1);
+  }
+}
 @font-face {
   font-family: 'arnamu';
   src: url('../../assets/fonts/arnamu.ttf');
@@ -35,20 +77,4 @@
   font-size: 20px;
   font-family: 'arnamu', fallback-fonts;
   animation: zoom 0.5s ease-out;
-}
-@keyframes spinXAnimation {
-  0% {
-    transform: rotateX(0deg);
-  }
-  100% {
-    transform: rotateX(360deg);
-  }
-}
-@keyframes zoom {
-  from {
-    transform: scale(0.1);
-  }
-  to {
-    transform: scale(1);
-  }
 }
