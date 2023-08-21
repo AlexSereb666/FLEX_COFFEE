@@ -1,0 +1,35 @@
+@import '../../../utils/animations';
+@import '../../../utils/colors';
+@import '../../../utils/fonts';
+
+@font-face {
+    font-family: 'PostalShrift';
+    src: url('../../../assets/fonts/PostalShrift.ttf'); 
+}  
+
+.coffee-house-card {
+    display: flex;
+    width: 100%;
+    padding: 100px 140px;
+
+    &__left {
+        flex: 0.55;
+        background-color: #02020273;
+    }
+
+    &__right {
+        flex: 0.45;
+        padding: 20px 0;
+        background-color: #02020273;
+
+        &__map-container {
+            width: 100%;
+            height: 400px;
+        }
+    }
+
+    &__title {
+        font-family    : 'PostalShrift';
+    }
+}
+
