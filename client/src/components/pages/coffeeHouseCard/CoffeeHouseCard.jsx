@@ -33,7 +33,7 @@ function CoffeeHouseCard() {
         address    : 'Ул. Костюкова дом 2',
         score      : 10,
         orders     : 0,
-        coordinates: [55.75, 37.57],
+        coordinates: [65.75, 47.57],
         schedule   : 'Пн-Пт: 08:00 - 23:00\nСб-Вс: 10:00 - 24:00',
         description: 'Уютная кофейня с атмосферой теплой дружелюбности, где аромат свежесваренного кофе сливается с уникальным дизайном интерьера. Предлагаем широкий выбор кофейных напитков, от классических эспрессо до авторских латте и чая ручной заварки. Идеальное место для встреч с друзьями, работы вдохновения и наслаждения вкусом.',
         gallery    : [
@@ -51,7 +51,7 @@ function CoffeeHouseCard() {
         address    : 'Ул. Костюкова дом 3',
         score      : 10,
         orders     : 0,
-        coordinates: [55.75, 37.57],
+        coordinates: [75.75, 57.57],
         schedule   : 'Пн-Пт: 08:00 - 23:00\nСб-Вс: 10:00 - 24:00',
         description: 'Изысканные зерна со всего мира раскрывают свой богатый вкус в нашей кофейне. Погрузитесь в атмосферу тепла и радушия, наслаждаясь ручным приготовлением каждой чашки. От стандартных эспрессо до креативных напитков - у нас кофе становится искусством.',
         gallery    : [
@@ -69,7 +69,7 @@ function CoffeeHouseCard() {
         address    : 'Ул. Костюкова дом 4',
         score      : 10,
         orders     : 0,
-        coordinates: [55.75, 37.57],
+        coordinates: [45.75, 27.57],
         schedule   : 'Пн-Пт: 08:00 - 23:00\nСб-Вс: 10:00 - 24:00',
         description: 'Воплощение страсти к кофе и искусству в каждой чашке. Наша кофейня - это оазис ароматов, где каждый глоток погружает в мир новых вкусовых открытий. От эспрессо, заряжающего энергией, до латте с нежными нотками - мы создаём настроение для вашего идеального дня.',
         gallery    : [
@@ -81,14 +81,13 @@ function CoffeeHouseCard() {
             {name: cosmos}] // заменить на id
     }]
 
+    const selectedCoffeeHouse = coffeeHouses.find(coffeeHouse => coffeeHouse.id === parseInt(id));
+
     const mapData = {
-        center: [55.75, 37.57],
+        center: selectedCoffeeHouse.coordinates,
         zoom: 10,
     };
 
-    const selectedCoffeeHouse = coffeeHouses.find(coffeeHouse => coffeeHouse.id === parseInt(id));
-
-    const placemarkGeometry = [55.75, 37.57];
     const maxVisibleImages = 5;
     const remainingImages = Math.max(selectedCoffeeHouse.gallery.length - maxVisibleImages, 0);
     const visibleImages = selectedCoffeeHouse.gallery.slice(0, maxVisibleImages);
@@ -125,7 +124,7 @@ function CoffeeHouseCard() {
                     <div className="coffee-house-card__right__map-container">
                         <YMaps>
                             <Map defaultState={mapData} width='100%' height='100%'>
-                                <Placemark geometry={placemarkGeometry} />
+                                <Placemark geometry={selectedCoffeeHouse.coordinates} />
                             </Map>
                         </YMaps>
                     </div>

@@ -36,6 +36,8 @@
             color: @main-page-title-two;
             text-align: center;
             margin: 10px 10px 0 0;
+            pointer-events: none;
+            user-select   : none;
         }
     
         &__address {
@@ -44,6 +46,8 @@
             color: @font-color-basic;
             text-align: center;
             margin: 0 0;
+            pointer-events: none;
+            user-select   : none;
     
             img {
                 width: 25px;
@@ -63,12 +67,15 @@
             background-color: #020202a2;
             font-family: 'arnamu';
             font-size: 20px;
-            color: @checkBox-background ;
+            color: @checkBox-background;
+            pointer-events: none;
+            user-select   : none;
         }
 
         &__buttons {
             padding: 10px 15px;
             margin-left: 5%;
+            user-select   : none;
         }
 
         &__gallery {
@@ -84,6 +91,14 @@
             height: 110px;
             object-fit: cover;
             border: 1px solid @main-page-btn-background;
+            user-select   : none;
+            cursor: pointer;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        &__gallery__image:hover {
+            box-shadow: 0 0 20px 5px @main-page-btn-shadow;
+            transform: scale(1.1);
         }
 
         &__gallery__remaining {
@@ -92,11 +107,18 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: rgba(@main-page-btn-active, 0.7);;
-            color: white;
+            background-color: rgba(@main-page-btn-active, 0.7);
+            color: @checkBox-background;
             font-family: 'arnamu';
             font-size: 24px;
             border-radius: 50%;
+            user-select   : none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        &__gallery__remaining:hover {
+            background-color: rgba(@main-page-btn-active, 1);
         }
     }
 
@@ -131,6 +153,8 @@
                 padding: 10px 0;
                 background-color: rgba(@main-page-btn-active, 0.7);
                 border-radius: 20px;
+                pointer-events: none;
+                user-select   : none;
 
                 h3 {
                     font-family: 'arnamu';
