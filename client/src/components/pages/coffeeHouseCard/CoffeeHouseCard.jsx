@@ -1,12 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { YMaps, Map, Placemark } from 'react-yandex-maps';
 import './CoffeeHouseCard.css';
 import addressImg from '../../../assets/img/address-icon.png';
 import cosmos from '../../../assets/img/cosmo.jpg';
+import Slider from './slider/Slider';
 
 function CoffeeHouseCard() {
+    const [selectedImage, setSelectedImage] = useState(null);
+    const [selectedImageIndex, setSelectedImageIndex] = useState(-1);
+
+
     let { id } = useParams();
+
+    const handleImageClick = (image, index) => {
+        setSelectedImageIndex(index);
+        setSelectedImage(image);
+    };
+      
+
+    const handleCloseModal = () => {
+        setSelectedImage(null);
+    };
+
+    const handleRemainingClick = () => {
+        if (remainingImages > 0) {
+            handleImageClick(selectedCoffeeHouse.gallery[maxVisibleImages].name);
+        }
+    };
 
     let coffeeHouses = [{
         id         : 1,
@@ -15,7 +36,7 @@ function CoffeeHouseCard() {
         address    : 'Ул. Костюкова дом 1',
         score      : 10,
         orders     : 0,
-        coordinates: [55.75, 37.57],
+        coordinates: [50.582209, 36.596233],
         schedule   : 'Пн-Пт: 08:00 - 23:00\nСб-Вс: 10:00 - 24:00',
         description: 'Уютная уголочная кофейня, где аромат свежесваренного кофе сливается с обаянием приглушенного освещения. Погрузитесь в атмосферу непринужденных бесед и вдохновляющих моментов, наслаждаясь каждой глоткой внимательно приготовленного напитка.',
         gallery    : [
@@ -33,7 +54,7 @@ function CoffeeHouseCard() {
         address    : 'Ул. Костюкова дом 2',
         score      : 10,
         orders     : 0,
-        coordinates: [65.75, 47.57],
+        coordinates: [50.645189, 36.570570],
         schedule   : 'Пн-Пт: 08:00 - 23:00\nСб-Вс: 10:00 - 24:00',
         description: 'Уютная кофейня с атмосферой теплой дружелюбности, где аромат свежесваренного кофе сливается с уникальным дизайном интерьера. Предлагаем широкий выбор кофейных напитков, от классических эспрессо до авторских латте и чая ручной заварки. Идеальное место для встреч с друзьями, работы вдохновения и наслаждения вкусом.',
         gallery    : [
@@ -51,7 +72,7 @@ function CoffeeHouseCard() {
         address    : 'Ул. Костюкова дом 3',
         score      : 10,
         orders     : 0,
-        coordinates: [75.75, 57.57],
+        coordinates: [50.594120, 36.598143],
         schedule   : 'Пн-Пт: 08:00 - 23:00\nСб-Вс: 10:00 - 24:00',
         description: 'Изысканные зерна со всего мира раскрывают свой богатый вкус в нашей кофейне. Погрузитесь в атмосферу тепла и радушия, наслаждаясь ручным приготовлением каждой чашки. От стандартных эспрессо до креативных напитков - у нас кофе становится искусством.',
         gallery    : [
@@ -69,7 +90,7 @@ function CoffeeHouseCard() {
         address    : 'Ул. Костюкова дом 4',
         score      : 10,
         orders     : 0,
-        coordinates: [45.75, 27.57],
+        coordinates: [50.595425, 36.571262],
         schedule   : 'Пн-Пт: 08:00 - 23:00\nСб-Вс: 10:00 - 24:00',
         description: 'Воплощение страсти к кофе и искусству в каждой чашке. Наша кофейня - это оазис ароматов, где каждый глоток погружает в мир новых вкусовых открытий. От эспрессо, заряжающего энергией, до латте с нежными нотками - мы создаём настроение для вашего идеального дня.',
         gallery    : [
@@ -85,7 +106,7 @@ function CoffeeHouseCard() {
 
     const mapData = {
         center: selectedCoffeeHouse.coordinates,
-        zoom: 10,
+        zoom: 14,
     };
 
     const maxVisibleImages = 5;
@@ -111,14 +132,27 @@ function CoffeeHouseCard() {
                     </div>
                     <div className='coffee-house-card__left__gallery'>
                         {visibleImages.map((image, index) => (
-                            <img key={index} src={image.name} alt='error' className="coffee-house-card__left__gallery__image" />
+                        <img
+                            key={index}
+                            src={image.name}
+                            alt='error'
+                            className="coffee-house-card__left__gallery__image"
+                            onClick={() => handleImageClick(image.name, index)}
+                        />
                         ))}
                         {remainingImages > 0 && (
-                            <div className="coffee-house-card__left__gallery__remaining">
-                                +{remainingImages}
-                            </div>
+                        <div className="coffee-house-card__left__gallery__remaining" onClick={handleRemainingClick}>
+                            +{remainingImages}
+                        </div>
                         )}
                     </div>
+                    {selectedImage && (
+                        <Slider
+                            images={selectedCoffeeHouse.gallery.map((item) => item.name)}
+                            onClose={handleCloseModal}
+                            initialIndex={selectedImageIndex}
+                        />
+                    )}
                 </div>
                 <div className="coffee-house-card__right">
                     <div className="coffee-house-card__right__map-container">
