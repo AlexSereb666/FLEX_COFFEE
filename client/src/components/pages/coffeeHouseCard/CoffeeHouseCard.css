@@ -75,6 +75,32 @@
     transform: rotate(0deg);
   }
 }
+@keyframes slideInLeft {
+  from {
+    left: -100px;
+  }
+  to {
+    left: 50px;
+  }
+}
+@keyframes slideInRight {
+  from {
+    right: -100px;
+  }
+  to {
+    right: 50px;
+  }
+}
+@keyframes boomBottom {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 @font-face {
   font-family: 'PostalShrift';
   src: url('../../../assets/fonts/PostalShrift.ttf');
@@ -99,6 +125,7 @@
 .coffee-house-card__left {
   flex: 0.5;
   background-color: #02020273;
+  animation: zoom 0.5s ease-out;
 }
 .coffee-house-card__left__title {
   font-family: 'PostalShrift';
@@ -188,44 +215,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  animation: zoom 0.5s ease-out;
 }
-.coffee-house-card__right__map-container {
-  width: 100%;
-  height: 400px;
+.coffee-house-card__bottom {
+  opacity: 1;
+  animation: boomBottom 0.5s ease;
 }
 .coffee-house-card__bottom__info {
   display: flex;
   padding: 20px 0;
   gap: 150px;
   justify-content: center;
-}
-.coffee-house-card__bottom__info__phone,
-.coffee-house-card__bottom__info__schedule,
-.coffee-house-card__bottom__info__orders,
-.coffee-house-card__bottom__info__score {
-  width: 290px;
-  border: 3px solid #995f40;
-  text-align: center;
-  padding: 10px 0;
-  background-color: rgba(100, 55, 31, 0.7);
-  border-radius: 20px;
-  pointer-events: none;
-  user-select: none;
-}
-.coffee-house-card__bottom__info__phone h3,
-.coffee-house-card__bottom__info__schedule h3,
-.coffee-house-card__bottom__info__orders h3,
-.coffee-house-card__bottom__info__score h3 {
-  font-family: 'arnamu';
-  font-size: 26px;
-}
-.coffee-house-card__bottom__info__phone__desc,
-.coffee-house-card__bottom__info__schedule__desc,
-.coffee-house-card__bottom__info__orders__desc,
-.coffee-house-card__bottom__info__score__desc {
-  font-family: 'arnamu';
-  font-size: 22px;
-  padding-top: 10px;
 }
 .coffee-card-button {
   width: 170px;

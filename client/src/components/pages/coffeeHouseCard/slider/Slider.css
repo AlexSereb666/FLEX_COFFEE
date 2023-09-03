@@ -1,3 +1,116 @@
+@keyframes dropDown {
+  from {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes authZoomIn {
+  from {
+    transform: scale(0.1);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes authZoomOut {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0.1);
+  }
+}
+@keyframes spinXAnimation {
+  0% {
+    transform: rotateX(0deg);
+  }
+  100% {
+    transform: rotateX(360deg);
+  }
+}
+@keyframes zoom {
+  from {
+    transform: scale(0.1);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes swing {
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(2deg);
+  }
+  20% {
+    transform: rotate(-2deg);
+  }
+  30% {
+    transform: rotate(2deg);
+  }
+  40% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+  60% {
+    transform: rotate(-2deg);
+  }
+  70% {
+    transform: rotate(2deg);
+  }
+  80% {
+    transform: rotate(-2deg);
+  }
+  90% {
+    transform: rotate(2deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+@keyframes slideInLeft {
+  from {
+    left: -100px;
+  }
+  to {
+    left: 50px;
+  }
+}
+@keyframes slideInRight {
+  from {
+    right: -100px;
+  }
+  to {
+    right: 50px;
+  }
+}
+@keyframes boomBottom {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes boomBottomSlider {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 .image-modal {
   position: fixed;
   top: 0;
@@ -10,21 +123,40 @@
   align-items: center;
   z-index: 1000;
 }
-.image-modal-content {
+.image-modal__content {
   max-width: 90%;
   max-height: 90%;
   overflow: auto;
 }
-.image-modal-content img {
-  width: 1400px;
-  height: 800px;
+.image-modal__close-button {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  background: transparent;
+  border: none;
+  color: #ccc;
+  font-size: 35px;
+  cursor: pointer;
+  outline: none;
+  animation: zoom 0.3s ease;
+}
+.image-modal__close-button:hover {
+  color: #E9BEA5;
+}
+.image-modal__large-image {
+  width: 1200px;
+  height: 700px;
   display: block;
   margin: 0 auto;
   object-fit: cover;
+  opacity: 1;
+  animation: boomBottom 0.3s ease;
 }
-/* CSS для кнопок переключения */
-.prev-button,
-.next-button {
+.image-modal__large-image .boomBottom {
+  animation: boomBottomSlider 0.3s ease;
+}
+.image-modal__prev-button,
+.image-modal__next-button {
   width: 100px;
   position: absolute;
   top: 50%;
@@ -36,29 +168,41 @@
   border: none;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.3s;
+  border-radius: 10px;
 }
-.prev-button:hover,
-.next-button:hover {
+.image-modal__prev-button:hover,
+.image-modal__next-button:hover {
   background-color: rgba(133, 80, 52, 0.7);
 }
-.prev-button {
-  left: 50px;
+.image-modal__prev-button:active,
+.image-modal__next-button:active {
+  background-color: rgba(133, 80, 52, 0.9);
 }
-.next-button {
-  right: 50px;
+.image-modal__prev-button {
+  left: -100px;
+  animation: slideInLeft 0.3s forwards;
 }
-/* Стили для кнопки закрытия */
-.close-button {
-  position: absolute;
-  top: 20px;
-  right: 40px;
-  background: transparent;
-  border: none;
-  color: #ccc;
-  font-size: 35px;
+.image-modal__next-button {
+  right: -100px;
+  animation: slideInRight 0.3s forwards;
+}
+.image-modal__small-images {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+.image-modal__small-image {
+  width: 120px;
+  height: 80px;
+  margin: 0 10px;
   cursor: pointer;
-  outline: none;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+  object-fit: cover;
 }
-.close-button:hover {
-  color: #E9BEA5;
+.image-modal__small-image.active {
+  opacity: 1;
+  border: 3px solid #E9BEA5;
 }

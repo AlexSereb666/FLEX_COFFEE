@@ -1,0 +1,19 @@
+.info-block {
+  width: 290px;
+  border: 3px solid #995f40;
+  text-align: center;
+  padding: 10px 0;
+  background-color: rgba(100, 55, 31, 0.7);
+  border-radius: 20px;
+  pointer-events: none;
+  user-select: none;
+}
+.info-block h3 {
+  font-family: 'arnamu';
+  font-size: 26px;
+}
+.info-block__desc {
+  font-family: 'arnamu';
+  font-size: 22px;
+  padding-top: 10px;
+}

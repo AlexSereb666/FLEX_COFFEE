@@ -1,23 +1,28 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { YMaps, Map, Placemark } from 'react-yandex-maps';
 import './CoffeeHouseCard.css';
+
+import Slider from './slider/Slider';
+import InfoBlock from './info-block/InfoBlock';
+import CustomMap from './customMap/CustomMap';
+
 import addressImg from '../../../assets/img/address-icon.png';
 import cosmos from '../../../assets/img/cosmo.jpg';
-import Slider from './slider/Slider';
+import img1 from '../../../assets/img/coffee-houses-1.jpg';
+import img2 from '../../../assets/img/coffee-houses-2.jpg';
+import img3 from '../../../assets/img/coffee-houses-3.jpg';
+import img4 from '../../../assets/img/coffee-houses-4.jpg';
 
 function CoffeeHouseCard() {
     const [selectedImage, setSelectedImage] = useState(null);
     const [selectedImageIndex, setSelectedImageIndex] = useState(-1);
-
 
     let { id } = useParams();
 
     const handleImageClick = (image, index) => {
         setSelectedImageIndex(index);
         setSelectedImage(image);
-    };
-      
+    }; 
 
     const handleCloseModal = () => {
         setSelectedImage(null);
@@ -41,11 +46,11 @@ function CoffeeHouseCard() {
         description: 'Уютная уголочная кофейня, где аромат свежесваренного кофе сливается с обаянием приглушенного освещения. Погрузитесь в атмосферу непринужденных бесед и вдохновляющих моментов, наслаждаясь каждой глоткой внимательно приготовленного напитка.',
         gallery    : [
             {name: cosmos}, 
+            {name: img1}, 
+            {name: img2}, 
             {name: cosmos}, 
-            {name: cosmos}, 
-            {name: cosmos}, 
-            {name: cosmos}, 
-            {name: cosmos}] // заменить на id
+            {name: img3}, 
+            {name: img4}] // заменить на id
     },
     {
         id         : 2,
@@ -141,65 +146,54 @@ function CoffeeHouseCard() {
                         />
                         ))}
                         {remainingImages > 0 && (
-                        <div className="coffee-house-card__left__gallery__remaining" onClick={handleRemainingClick}>
-                            +{remainingImages}
-                        </div>
+                            <div className="coffee-house-card__left__gallery__remaining" onClick={handleRemainingClick}>
+                                +{remainingImages}
+                            </div>
+                        )}
+                        {selectedImage && (
+                            <Slider
+                                images={selectedCoffeeHouse.gallery.map((item) => item.name)}
+                                onClose={handleCloseModal}
+                                initialIndex={selectedImageIndex}
+                            />
                         )}
                     </div>
-                    {selectedImage && (
-                        <Slider
-                            images={selectedCoffeeHouse.gallery.map((item) => item.name)}
-                            onClose={handleCloseModal}
-                            initialIndex={selectedImageIndex}
-                        />
-                    )}
-                </div>
+                </div> 
                 <div className="coffee-house-card__right">
-                    <div className="coffee-house-card__right__map-container">
-                        <YMaps>
-                            <Map defaultState={mapData} width='100%' height='100%'>
-                                <Placemark geometry={selectedCoffeeHouse.coordinates} />
-                            </Map>
-                        </YMaps>
-                    </div>
+                    <CustomMap
+                        mapData={mapData}
+                        geometry={selectedCoffeeHouse.coordinates}
+                    />
                 </div>
             </div>
             <div className='coffee-house-card__bottom'>
                 <div className='coffee-house-card__bottom__info'>
-                    <div className='coffee-house-card__bottom__info__orders'>
-                        <h3>Кол-во заказов:</h3>
-                        <div className='coffee-house-card__bottom__info__orders__desc'>
-                            {selectedCoffeeHouse.orders}
-                        </div>
-                    </div>
-                    <div className='coffee-house-card__bottom__info__score'>
-                        <h3>Средняя оценка:</h3>
-                        <div className='coffee-house-card__bottom__info__score__desc'>
-                            {selectedCoffeeHouse.orders} / 10
-                        </div>
-                    </div>
-                    <div className='coffee-house-card__bottom__info__phone'>
-                        <h3>Контактные телефоны:</h3>
-                        <div className='coffee-house-card__bottom__info__phone__desc'>
-                            {selectedCoffeeHouse.phone.split('\n').map((item, index) => (
-                                <React.Fragment key={index}>
-                                    {item}
-                                    <br />
-                                </React.Fragment>
-                            ))}
-                        </div>
-                    </div>
-                    <div className='coffee-house-card__bottom__info__schedule'>
-                        <h3>График работы:</h3>
-                        <div className='coffee-house-card__bottom__info__schedule__desc'>
-                            {selectedCoffeeHouse.schedule.split('\n').map((item, index) => (
-                                <React.Fragment key={index}>
-                                    {item}
-                                    <br />
-                                </React.Fragment>
-                            ))}
-                        </div>
-                    </div>
+                    <InfoBlock
+                        title={'Кол-во заказов:'}
+                        desc={selectedCoffeeHouse.orders}
+                    />
+                    <InfoBlock
+                        title={'Средняя оценка:'}
+                        desc={selectedCoffeeHouse.orders + ' / 10'}
+                    />
+                    <InfoBlock
+                        title={'Контактные телефоны:'}
+                        desc={selectedCoffeeHouse.phone.split('\n').map((item, index) => (
+                            <React.Fragment key={index}>
+                                {item}
+                                <br />
+                            </React.Fragment>
+                        ))}
+                    />
+                    <InfoBlock
+                        title={'График работы:'}
+                        desc={selectedCoffeeHouse.schedule.split('\n').map((item, index) => (
+                            <React.Fragment key={index}>
+                                {item}
+                                <br />
+                            </React.Fragment>
+                        ))}
+                    />
                 </div>
             </div>
         </div>

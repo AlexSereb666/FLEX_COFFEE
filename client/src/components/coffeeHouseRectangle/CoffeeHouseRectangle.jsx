@@ -1,4 +1,5 @@
 import React from 'react';
+import './CoffeeHouseRectangle.css';
 import { Link } from 'react-router-dom';
 import chainImg from '../../assets/img/chain.png';
 
