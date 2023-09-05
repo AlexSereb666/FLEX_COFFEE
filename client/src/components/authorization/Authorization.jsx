@@ -9,7 +9,7 @@ function Authorization() {
     const navigate = useNavigate();
     const [isClosing, setIsClosing] = useState(false);
 
-    const [email, setEmail] = useState("")
+    const [login, setLogin] = useState("")
     const [password, setPassword] = useState("")
 
     const [isCheckedPass, setIsCheckedPass] = useState(false)
@@ -26,11 +26,11 @@ function Authorization() {
                 <button className='authorization__close-btn' onClick={handleClose}>X</button>
                 <h3 className='title'>Авторизация</h3>
                 <InputAuth 
-                    value={email} 
-                    setValue={setEmail} 
+                    value={login} 
+                    setValue={setLogin} 
                     type="text" 
                     required={true} 
-                    label={'Email address'}
+                    label={'Login'}
                     maxLength={45}
                 />
                 <InputAuth
@@ -56,7 +56,7 @@ function Authorization() {
                 />
                 <div className='authorization__register'>
                     <p>Нет аккаунта?&nbsp;
-                        <span onClick={() => navigate('/register')}>Зарегистрироваться</span>
+                        <span onClick={() => navigate('/registration')}>Зарегистрироваться</span>
                     </p>
                 </div>
             </div>

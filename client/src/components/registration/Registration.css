@@ -119,7 +119,7 @@
   font-family: 'better-vcr_0';
   src: url('../../assets/fonts/better-vcr_0.ttf');
 }
-.authorization {
+.registration {
   position: fixed;
   top: 0;
   left: 0;
@@ -130,8 +130,8 @@
   justify-content: center;
   align-items: center;
 }
-.authorization__content {
-  width: 400px;
+.registration__content {
+  width: 500px;
   background-color: rgba(91, 86, 67, 0.85);
   padding: 20px;
   border-radius: 8px;
@@ -139,10 +139,50 @@
   animation: authZoomIn 0.5s forwards;
   box-shadow: 0 0 50px rgba(255, 255, 255, 0.5);
 }
-.authorization__content.closing {
+.registration__block-pass {
+  display: flex;
+}
+.registration__passwords {
+  width: 280px;
+}
+.registration__memas {
+  width: 35%;
+  height: 102px;
+  margin-left: 20px;
+  overflow: hidden;
+  border-radius: 5px;
+  /*
+        video {
+            width: 100%;
+            height: auto;
+        }*/
+}
+.registration__memas img {
+  width: 90%;
+  height: auto;
+  margin-left: 8px;
+}
+.registration__container-phone {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+}
+.registration__container-phone__country img {
+  margin-top: 4px;
+  width: 40px;
+  height: 30px;
+  border-radius: 5px;
+}
+.registration__container-phone__text {
+  width: 160px;
+  height: 40px;
+  font-size: 24px;
+  text-align: center;
+}
+.registration__content.closing {
   animation: authZoomOut 0.2s forwards;
 }
-.authorization__close-btn {
+.registration__close-btn {
   position: absolute;
   right: 20px;
   top: 20px;
@@ -153,28 +193,13 @@
   color: #f9f4e6;
   z-index: 10;
 }
-.authorization__register {
-  margin-top: 20px;
-  text-align: center;
-  font-family: 'better-vcr_0', fallback-fonts;
-  font-size: 12px;
-  pointer-events: none;
-  user-select: none;
-}
-.authorization__register span {
-  color: #ccc;
-  cursor: pointer;
-  text-decoration: underline;
-  pointer-events: all;
-  user-select: all;
-}
-.title {
+.registration__title {
   font-size: 24px;
   font-family: 'PostalShrift', fallback-fonts;
   padding-bottom: 30px;
   position: relative;
 }
-.title::after {
+.registration__title::after {
   content: "";
   display: block;
   height: 3px;

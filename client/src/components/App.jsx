@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Navbar from './navbar/Navbar'
-import Auth from './authorization/Authorization'
+import Navbar from './navbar/Navbar';
+import Auth from './authorization/Authorization';
+import Regist from './registration/Registration';
 import MainPage from '../components/pages/main/Main';
 import ContactsPage from '../components/pages/contacts/Contacts';
 import CoffeeHouses from '../components/pages/coffeeHouses/CoffeeHouses';
@@ -21,7 +22,7 @@ function App() {
           <Route path="/contacts" element={<ContactsPage/>} />
           <Route path='/coffeehouses' element={<CoffeeHouses/>} />
           <Route path="/coffeehouse/:id" element={<CoffeeHousesCard/>} />
-          <Route path="/registration" element={<h1>Регистрация</h1>} />
+          <Route path="/registration" element={<Regist/>} />
         </Routes>
         <div className='app-shadow'></div>
       </div>

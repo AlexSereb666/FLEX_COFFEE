@@ -1,0 +1,119 @@
+@import '../../utils/colors';
+@import '../../utils/fonts';
+@import '../../utils/animations';
+
+@font-face {
+    font-family: 'PostalShrift';
+    src: url('../../assets/fonts/PostalShrift.ttf'); 
+}  
+
+@font-face {
+    font-family: 'better-vcr_0';
+    src: url('../../assets/fonts/better-vcr_0.ttf'); 
+}
+
+.registration {
+    position        : fixed;
+    top             : 0;
+    left            : 0;
+    width           : 100%;
+    height          : 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display         : flex;
+    justify-content : center;
+    align-items     : center;
+
+    &__content {
+        width           : 500px;
+        background-color: fade(@additional-color, 85%);
+        padding         : 20px;
+        border-radius   : 8px;
+        position        : relative;
+        animation       : authZoomIn 0.5s forwards;
+        box-shadow      : 0 0 50px rgba(255, 255, 255, 0.5);
+    }
+
+    &__block-pass {
+        display: flex;
+    }
+
+    &__passwords {
+        width: 280px;
+    }
+
+    &__memas {
+        width      : 35%;
+        height     : 102px;
+        margin-left: 20px;
+        overflow   : hidden;
+        border-radius: 5px;
+
+        img {
+           width: 90%;
+           height: auto; 
+           margin-left: 8px;
+        }
+
+        //overflow: 'hidden';
+        
+        /*
+        video {
+            width: 100%;
+            height: auto;
+        }*/
+    }
+
+    &__container-phone {
+        display: flex;
+        width: 100%;
+        gap: 20px;
+
+        &__country img{
+            margin-top: 4px;
+            width: 40px;
+            height: 30px;
+            border-radius: 5px;
+        }
+
+        &__text {
+            width: 160px;
+            height: 40px;
+            font-size: 24px;
+            text-align: center;
+        }
+    }
+
+    &__content.closing {
+        animation: authZoomOut 0.2s forwards;
+    }
+
+    &__close-btn {
+        position  : absolute;
+        right     : 20px;
+        top       : 20px;
+        border    : none;
+        background: none;
+        cursor    : pointer;
+        font-size : 20px;
+        color     : @font-color-basic;
+        z-index   : 10;
+    }
+
+    &__title {
+        font-size     : @font-size-h3-item ;
+        font-family   : 'PostalShrift', fallback-fonts; 
+        padding-bottom: 30px;
+        position      : relative;
+
+        &::after {
+            content   : "";
+            display   : block;
+            height    : 3px;
+            background: linear-gradient(to right, transparent, @font-color-basic, transparent); 
+            width     : 100%;
+            position  : absolute;
+            bottom    : 15px;
+            left      : 0;
+        }
+    }
+}

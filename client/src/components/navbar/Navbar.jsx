@@ -24,7 +24,7 @@ function Navbar() {
         </div>
         <div className='navbar__auth'>
           <Link to="/login" className="navbar__auth-link">Войти</Link>
-          <Link to="/register" className="navbar__auth-link">Регистрация</Link>
+          <Link to="/registration" className="navbar__auth-link">Регистрация</Link>
         </div>
       </div>
     </div>

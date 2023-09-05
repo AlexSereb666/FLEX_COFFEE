@@ -1,10 +1,13 @@
 import React from "react";
+import InputMask from "react-input-mask";
 import './InputAuth.css';
 
 const InputAuth = (props) => {
     return (
         <div className="input-group">
-            <input className="input-group__input"
+            <InputMask
+                className="input-group__input"
+                mask={props.mask}
                 onChange={(event) => props.setValue(event.target.value)}
                 type={props.type} 
                 value={props.value}  
@@ -15,6 +18,5 @@ const InputAuth = (props) => {
         </div>
     );
 };
-
 
 export default InputAuth;
