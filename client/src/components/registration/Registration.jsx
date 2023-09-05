@@ -4,20 +4,23 @@ import './Registration.css';
 import InputAuth from '../../utils/input-auth/InputAuth';
 import Button from '../../utils/button/btn-form/BtnForm';
 import Country from '../../assets/img/Russia.jpg';
-import MemesCat from '../../assets/video/memes_cat.mp4';
-import mem from '../../assets/img/memes_cat.jpg';
+import mem from '../../assets/video/memes.mp4';
+import mem_good from '../../assets/img/memes_good.jpg';
 
 function Registration() {
     const navigate = useNavigate();
     const [isClosing, setIsClosing] = useState(false);
-    const [lineColor, setLineColor] = useState("gray")
+    const [lineColor, setLineColor] = useState("gray");
+    const [currentCheck, setCurrentCheck] = useState(null); // Состояние для текущего элемента checkList
+    const [checkList, setCheckList] = useState([]);
+    const [isStrongPassword, setIsStrongPassword] = useState(false); // Состояние для определения силы пароля
 
-    const [login, setLogin] = useState("")
-    const [phone, setPhone] = useState("")
-    const [email, setEmail] = useState("")
-    const [passwordOne, setPasswordOne] = useState("")
-    const [passwordTwo, setPasswordTwo] = useState("")
-    
+    const [login, setLogin] = useState("");
+    const [phone, setPhone] = useState("");
+    const [email, setEmail] = useState("");
+    const [passwordOne, setPasswordOne] = useState("");
+    const [passwordTwo, setPasswordTwo] = useState("");
+
     const handleClose = () => {
         setIsClosing(true);
         setTimeout(() => navigate(-1), 200);
@@ -30,19 +33,60 @@ function Registration() {
         const hasUpperCase = /[A-Z]/.test(password); // Наличие больших букв
         const hasLowerCase = /[a-z]/.test(password); // Наличие маленьких букв
         const hasSpecialChars = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\]/.test(password); // Наличие специальных символов
-      
-        if (hasLength && hasDigits && hasUpperCase && hasLowerCase && hasSpecialChars) {
-          setLineColor("green"); // Если все критерии выполнены, пароль сильный
-        } else if (hasLength && (hasDigits || hasUpperCase || hasLowerCase || hasSpecialChars)) {
-          setLineColor("yellow"); // Если выполнены некоторые критерии, пароль средний
-        } else {
-          setLineColor("red"); // В остальных случаях пароль слабый
+
+        const newCheckList = [];
+
+        if (!hasLength) {
+            newCheckList.push("Пароль короткий");
         }
-    }      
+        if (!hasDigits) {
+            newCheckList.push("А цифры где?");
+        }
+        if (!hasUpperCase) {
+            newCheckList.push("Большие буквы будут?");
+        }
+        if (!hasLowerCase) {
+            newCheckList.push("Маленьких букв нет");
+        }
+        if (!hasSpecialChars) {
+            newCheckList.push("Спец. символы тоже нужны!");
+        }
+
+        if (hasLength && hasDigits && hasUpperCase && hasLowerCase && hasSpecialChars) {
+            setLineColor("green"); // Если все критерии выполнены, пароль сильный
+            newCheckList.push("Я горжусь тобой!");
+            setIsStrongPassword(true); // Устанавливаем состояние как сильный пароль
+        } else if (hasLength && (hasDigits || hasUpperCase || hasLowerCase || hasSpecialChars)) {
+            setLineColor("yellow");
+            newCheckList.push("Придумай получше");
+            setIsStrongPassword(false); // Устанавливаем состояние как слабый пароль
+        } else {
+            setLineColor("red");
+            newCheckList.push("Пароль слабый");
+            setIsStrongPassword(false); // Устанавливаем состояние как слабый пароль
+        }
+
+        setCheckList(newCheckList);
+    }
 
     useEffect(() => {
-        checkPasswordStrength()
+        checkPasswordStrength();
     }, [passwordOne])
+
+    useEffect(() => {
+        let interval;
+
+        if (checkList.length > 0) {
+            interval = setInterval(() => {
+                const randomIndex = Math.floor(Math.random() * checkList.length);
+                setCurrentCheck(checkList[randomIndex]);
+            }, 1300);
+        } else {
+            setCurrentCheck(null);
+        }
+
+        return () => clearInterval(interval);
+    }, [checkList]);
 
     return (
         <div className='registration'>
@@ -81,7 +125,14 @@ function Registration() {
                         borderStyle: 'solid',
                         borderColor: lineColor,
                     }}>
-                        <img src={mem} alt='this cat =)' />
+                        {isStrongPassword ? (
+                            <img src={mem_good} alt="Good Password" />
+                        ) : (
+                            <video autoPlay loop muted>
+                                <source src={mem} type="video/mp4" />
+                                Your browser does not support the video tag.
+                            </video>
+                        )}
                     </div>
                 </div>
                 <div className='registration__container-phone'>
@@ -100,7 +151,7 @@ function Registration() {
                         <img src={Country} alt='dont found country'/>
                     </div>
                     <div className='registration__container-phone__text'>
-                        А где буквы?
+                        {currentCheck}
                     </div>
                 </div>
                 <InputAuth 
