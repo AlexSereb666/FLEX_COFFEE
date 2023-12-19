@@ -1,17 +1,16 @@
-const express = require("express")
-const mongoose = require("mongoose")
-const config = require("config")
+require('dotenv').config()
+const express =  require("express")
+const sequelize = require('./db')
+
+const PORT = process.env.PORT || 5000
 
 const app = express()
-const PORT = config.get("serverPort")
 
 const start = async () => {
     try {
-        await mongoose.connect(config.get("dbUrl"))
-
-        app.listen(PORT, () => {
-            console.log("Server FLEX COFFEE started on port ", PORT)
-        })
+        await sequelize.authenticate()
+        await sequelize.sync()
+        app.listen(PORT, () => console.log(`Server Flex Coffee started on port ${PORT}`))
     } catch (e) {
         console.log(e)
     }
