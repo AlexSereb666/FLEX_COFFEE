@@ -21,9 +21,9 @@ const Product = sequelize.define('product', {
     id: {type:DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type:DataTypes.STRING},
     price: {type:DataTypes.INTEGER},
-    rating: {type:DataTypes.INTEGER},
+    rating: {type:DataTypes.INTEGER, defaultValue: 0},
     img: {type:DataTypes.STRING},
-    count: {type:DataTypes.INTEGER},
+    count: {type:DataTypes.INTEGER, defaultValue: 0},
 })
 
 const Product_info = sequelize.define('product_info', {
@@ -34,10 +34,12 @@ const Product_info = sequelize.define('product_info', {
 
 const Product_type = sequelize.define('Product_type', {
     id: {type:DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    name: {type:DataTypes.STRING},
 })
 
 const Product_view = sequelize.define('Product_view', {
     id: {type:DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    name: {type:DataTypes.STRING},
 })
 
 const Rating = sequelize.define('rating', {
@@ -68,7 +70,7 @@ Rating.belongsTo(Product)
 Product.hasMany(BasketProductr)
 BasketProductr.belongsTo(Product)
 
-Product.hasMany(Product_info)
+Product.hasMany(Product_info, {as: 'info'})
 Product_info.belongsTo(Product)
 
 module.exports = {
