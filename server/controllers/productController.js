@@ -64,14 +64,14 @@ class productController {
     }
 
     // удалить продукт //
-    async kick(req, res) {
+    async kick(req, res, next) {
         try {
             const {id} = req.params;
     
             // Проверяем, существует ли продукт с указанным ID //
             const product = await Product.findOne({ where: { id } });
             if (!product) {
-                return res.status(404).json({ message: 'Продукт не найден' });
+                return next(ApiError.badRequest('Продукт не найден'));
             }
     
             // Удаляем информацию о продукте //
