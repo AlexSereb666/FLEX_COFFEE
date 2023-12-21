@@ -3,6 +3,14 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const {User, Basket} = require('../models/models')
 
+const generateJwt = (id, login, email, phone, role) => {
+    return jwt.sign({
+        id, login, email, phone, role}, 
+        process.env.SECRET_KEY,
+        {expiresIn: '24h'}
+    )
+}
+
 class userController {
     // регистрация //
     async registration(req, res) {
@@ -28,26 +36,29 @@ class userController {
         const hashPassword = await bcrypt.hash(password, 5)
         const user = await User.create({login, password: hashPassword, email, phone, role})
         const backet = await Basket.create({userId: user.id})
-        const token = jwt.sign({
-            id: user.id, email: user.email, phone: user.phone, role: user.role}, 
-            process.env.SECRET_KEY,
-            {expiresIn: '24h'}
-        )
+        const token = generateJwt(user.id, user.login, user.email, user.phone, user.role);
         return res.json({token})
     }
 
     // авторизация //
-    async login(req, res) {
-
+    async login(req, res, next) {
+        const {login, password} = req.body
+        const user = await User.findOne({where: {login}})
+        if (!user) {
+            return next(ApiError.internal('Пользователь не найден'))
+        }
+        const comparePassword = bcrypt.compareSync(password, user.password)
+        if (!comparePassword) {
+            return next(ApiError.internal('Неправильный пароль'))
+        }
+        const token = generateJwt(user.id, user.login, user.email, user.phone, user.role);
+        return res.json({token})
     }
 
     // проверка находится ли пользователь в системе //
     async check(req, res, next) {
-        const {id} = req.query
-        if (!id) {
-            return next(ApiError.badRequest('Не задан ID'))
-        }
-        res.json(id)
+        const token = generateJwt(req.user.id, req.user.login, req.user.email, req.user.phone, req.user.role)
+        return res.json({token})
     }
 
     // удаление пользователя //
