@@ -1,0 +1,60 @@
+@import '../../utils/colors';
+@import '../../utils/fonts';
+@import '../../utils/image';
+@import '../../utils/animations';
+  
+@font-face {
+    font-family: 'arnamu';
+    src: url('../../assets/fonts/arnamu.ttf'); 
+} 
+
+.overlay {
+    position  : fixed;
+    top       : 0;
+    left      : 0;
+    width     : 100%;
+    height    : 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index   : 999;
+}
+  
+.message-box {
+    position        : fixed;
+    top             : 40%;
+    left            : 35%;
+    transform       : translate(-50%, -50%);
+    padding         : 20px;
+    background-color: @message-box-color;
+    border          : 1px solid @message-box-border;
+    box-shadow      : 0 0 50px rgba(255, 255, 255, 0.5);
+    z-index         : 1000;
+    text-align      : center;
+    animation       : zoom 0.5s forwards;
+
+    & p {
+        margin-bottom: 35px;
+        font-size: 36px;
+        font-family     : 'arnamu', fallback-fonts;
+    }
+
+    & button {
+        padding         : 10px 20px;
+        background-color: @main-page-btn-background;
+        font-size       : @font-size-contacts-page;
+        color           : @font-color-basic;
+        border          : none;
+        border-radius   : 5px;
+        cursor          : pointer;
+        transition      : background-color 0.3s ease;
+        font-family     : 'arnamu', fallback-fonts;
+    }
+
+    & button:hover {
+        background-color: @main-page-btn-hover;
+        box-shadow      : 0 0 20px 5px @main-page-btn-shadow;
+    }
+
+    & button:active {
+        background-color: @main-page-btn-active; 
+    }
+}

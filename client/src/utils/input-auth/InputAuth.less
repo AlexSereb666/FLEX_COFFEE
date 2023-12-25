@@ -13,12 +13,13 @@
         font            : inherit;
         color           : @font-color-basic;
         width           : 100%;
-        padding         : 10px;
+        padding         : 14px;
         border          : none;
         border-radius   : 4px;
         outline         : 2px solid @font-color-basic;
         background-color: transparent;
         transition      : outline-color 500ms;
+        font-size       : @font-size-aut-reg-modal-inp;
     }
 
     &__input:not(:last-child) {
@@ -39,6 +40,7 @@
         color         : @font-color-basic;
         font-family   : 'arnamu', fallback-fonts;
         transition    : translate 500ms, scale 500ms;
+        font-size     : @font-size-aut-reg-modal-inp;
     }
 
     &__input:focus + &__label,

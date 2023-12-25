@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './Contacts.css';
 import BestCoffeeImg from '../../../assets/img/best-coffee.png';
+import { feedbackReq } from '../../../http/feedbackAPI';
+import MessageBox from '../../messageBox/MessageBox';
 
 function Contacts() {
   const [name, setName] = useState('');
@@ -10,13 +12,15 @@ function Contacts() {
   const [nameValid, setNameValid] = useState(true);
   const [messageValid, setMessageValid] = useState(true);
 
+  const [showMessageBox, setShowMessageBox] = useState(false);
+
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     setEmailValid(emailRegex.test(e.target.value) && e.target.value.trim() !== '');
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const isNameValid = name.trim() !== '';
@@ -28,13 +32,24 @@ function Contacts() {
     setMessageValid(isMessageValid);
 
     if (isNameValid && isEmailValid && isMessageValid) {
-      console.log({ name, email, message });
+      const response = await feedbackReq(name, email, message)
+      console.log(response)
+
+      setShowMessageBox(true);
+
+      setName('')
+      setEmail('')
+      setMessage('')
     } 
+  }
+
+  const handleCloseMessageBox = () => {
+    // Закрываем всплывающее окно
+    setShowMessageBox(false);
   }
 
   return (
     <div className="main-contacts">
-
       <div className="main-contacts__right-section">
         <div className="main-contacts__contact-header">СВЯЖИТЕСЬ С НАМИ</div>
         <div className="main-contacts__contact-subsection">
@@ -88,6 +103,9 @@ function Contacts() {
           />
           <button type="submit">Отправить письмо</button>
         </form>
+        {showMessageBox && (
+          <MessageBox message="Сообщение успешно отправлено!" onClose={handleCloseMessageBox} />
+        )}
       </div>
     </div>
   );

@@ -49,6 +49,14 @@ const Rating = sequelize.define('rating', {
     description: {type:DataTypes.STRING},
 })
 
+const Feedback = sequelize.define('Feedback', {
+    id: {type:DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    nameUser: {type:DataTypes.STRING},
+    responseUser: {type:DataTypes.STRING},
+    message: {type:DataTypes.STRING},
+    dateReq: {type:DataTypes.DATE}
+})
+
 // связи //
 User.hasOne(Basket)
 Basket.belongsTo(User)
@@ -83,4 +91,5 @@ module.exports = {
     Product_type,
     Product_view,
     Rating,
+    Feedback,
 }

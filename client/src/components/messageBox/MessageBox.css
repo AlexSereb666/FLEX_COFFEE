@@ -112,98 +112,51 @@
   }
 }
 @font-face {
-  font-family: 'PostalShrift';
-  src: url('../../assets/fonts/PostalShrift.ttf');
+  font-family: 'arnamu';
+  src: url('../../assets/fonts/arnamu.ttf');
 }
-@font-face {
-  font-family: 'better-vcr_0';
-  src: url('../../assets/fonts/better-vcr_0.ttf');
-}
-.registration {
+.overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 999;
 }
-.registration__content {
-  width: 550px;
-  background-color: rgba(91, 86, 67, 0.85);
+.message-box {
+  position: fixed;
+  top: 40%;
+  left: 35%;
+  transform: translate(-50%, -50%);
   padding: 20px;
-  border-radius: 8px;
-  position: relative;
-  animation: authZoomIn 0.5s forwards;
+  background-color: #854b1c80;
+  border: 1px solid #f8f8f8c5;
   box-shadow: 0 0 50px rgba(255, 255, 255, 0.5);
-}
-.registration__block-pass {
-  display: flex;
-}
-.registration__passwords {
-  width: 280px;
-}
-.registration__memas {
-  width: 45%;
-  height: 132px;
-  margin-left: 20px;
-  overflow: hidden;
-  border-radius: 5px;
-}
-.registration__memas video {
-  width: 250px;
-  height: auto;
-}
-.registration__memas img {
-  width: 220px;
-  height: auto;
-}
-.registration__container-phone {
-  display: flex;
-  width: 100%;
-  gap: 20px;
-}
-.registration__container-phone__country img {
-  margin-top: 14px;
-  width: 40px;
-  height: 30px;
-  border-radius: 5px;
-}
-.registration__container-phone__text {
-  width: 160px;
-  height: 40px;
-  font-size: 24px;
+  z-index: 1000;
   text-align: center;
+  animation: zoom 0.5s forwards;
 }
-.registration__content.closing {
-  animation: authZoomOut 0.2s forwards;
-}
-.registration__close-btn {
-  position: absolute;
-  right: 20px;
-  top: 20px;
-  border: none;
-  background: none;
-  cursor: pointer;
-  font-size: 20px;
-  color: #f9f4e6;
-  z-index: 10;
-}
-.registration__title {
+.message-box p {
+  margin-bottom: 35px;
   font-size: 36px;
-  font-family: 'PostalShrift', fallback-fonts;
-  padding-bottom: 30px;
-  position: relative;
+  font-family: 'arnamu', fallback-fonts;
 }
-.registration__title::after {
-  content: "";
-  display: block;
-  height: 3px;
-  background: linear-gradient(to right, transparent, #f9f4e6, transparent);
-  width: 100%;
-  position: absolute;
-  bottom: 15px;
-  left: 0;
+.message-box button {
+  padding: 10px 20px;
+  background-color: #995f40;
+  font-size: 24px;
+  color: #f9f4e6;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: 'arnamu', fallback-fonts;
+}
+.message-box button:hover {
+  background-color: #855034;
+  box-shadow: 0 0 20px 5px #e9bea5a1;
+}
+.message-box button:active {
+  background-color: #64371f;
 }

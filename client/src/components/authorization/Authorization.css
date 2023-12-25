@@ -131,7 +131,7 @@
   align-items: center;
 }
 .authorization__content {
-  width: 400px;
+  width: 550px;
   background-color: rgba(91, 86, 67, 0.85);
   padding: 20px;
   border-radius: 8px;
@@ -169,7 +169,7 @@
   user-select: all;
 }
 .title {
-  font-size: 24px;
+  font-size: 36px;
   font-family: 'PostalShrift', fallback-fonts;
   padding-bottom: 30px;
   position: relative;
