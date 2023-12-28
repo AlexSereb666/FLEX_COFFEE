@@ -13,24 +13,28 @@ const generateJwt = (id, login, email, phone, role) => {
 
 class userController {
     // регистрация //
-    async registration(req, res) {
+    async registration(req, res, next) {
         const {login, password, email, phone, role} = req.body
         if (!login || !email || !phone) {
             return next(ApiError.badRequest('Некорректные параметры ввода!:('))
+            //return res.status(404).json({ message: 'Некорректные параметры ввода!:(' })
         }
 
         // проверка, есть ли такой пользователь в БД //
         let candidate = await User.findOne({where: {login}})
         if (candidate) {
             return next(ApiError.badRequest('Данный логин занят'))
+            //return res.status(404).json({ message: 'Данный логин занят' })
         }
         candidate = await User.findOne({where: {email}})
         if (candidate) {
             return next(ApiError.badRequest('Данный email занят'))
+            //return res.status(404).json({ message: 'Данный email занят' })
         }
         candidate = await User.findOne({where: {phone}})
         if (candidate) {
             return next(ApiError.badRequest('Данный телефон занят'))
+            //return res.status(404).json({ message: 'Данный телефон занят' })
         }
 
         const hashPassword = await bcrypt.hash(password, 5)
@@ -46,10 +50,12 @@ class userController {
         const user = await User.findOne({where: {login}})
         if (!user) {
             return next(ApiError.internal('Пользователь не найден'))
+            //return res.status(500).json({ message: 'Пользователь не найден' })
         }
         const comparePassword = bcrypt.compareSync(password, user.password)
         if (!comparePassword) {
             return next(ApiError.internal('Неправильный пароль'))
+            //return res.status(500).json({ message: 'Неправильный пароль' })
         }
         const token = generateJwt(user.id, user.login, user.email, user.phone, user.role);
         return res.json({token})
