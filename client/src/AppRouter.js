@@ -2,10 +2,10 @@ import React from "react";
 import { Route, Routes } from 'react-router-dom';
 import Auth from './components/authorization/Authorization';
 import Regist from './components/registration/Registration';
-import MainPage from './components/pages/main/Main';
-import ContactsPage from './components/pages/contacts/Contacts';
-import CoffeeHouses from './components/pages/coffeeHouses/CoffeeHouses';
-import CoffeeHousesCard from './components/pages/coffeeHouseCard/CoffeeHouseCard';
+import MainPage from './pages/main/Main';
+import ContactsPage from './pages/contacts/Contacts';
+import CoffeeHouses from './pages/coffeeHouses/CoffeeHouses';
+import CoffeeHousesCard from './pages/coffeeHouseCard/CoffeeHouseCard';
 
 const AppRouter = () => {
     return (

@@ -40,6 +40,14 @@
     transform: scale(1);
   }
 }
+@keyframes zoom_center {
+  from {
+    transform: translate(-50%, -50%) scale(0.1);
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
 @keyframes swing {
   0% {
     transform: rotate(0deg);
@@ -113,11 +121,11 @@
 }
 @font-face {
   font-family: 'PostalShrift';
-  src: url('../../../assets/fonts/PostalShrift.ttf');
+  src: url('../../assets/fonts/PostalShrift.ttf');
 }
 @font-face {
   font-family: 'arnamu';
-  src: url('../../../assets/fonts/arnamu.ttf');
+  src: url('../../assets/fonts/arnamu.ttf');
 }
 .coffee-houses {
   display: flex;

@@ -14,6 +14,41 @@
     width           : 100%;
     box-shadow      : 0 10px 20px rgba(114, 60, 27, 0.473);
 
+    &__basket-img {
+        width       : 30px;
+        height      : auto;
+        margin-right: 15px;
+        transition: transform 0.3s;
+
+        &:hover {
+            transform: scale(1.2);
+        }
+    }
+
+    &__avatar-img {
+        width        : 35px;
+        height       : 35px;
+        margin-right : 15px;
+        border-radius: 50%;
+        border       : 2px solid @border-avatar;
+        transition: transform 0.3s;
+
+        &:hover {
+            transform: scale(1.2);
+        }
+    }
+    
+    &__exit-img {
+        width     : 25px;
+        height    : auto;
+        transition: transform 0.3s;
+        cursor    : pointer;
+
+        &:hover {
+            transform: scale(1.2);
+        }
+    }
+
     &__menu {
         display        : flex;
         justify-content: center;

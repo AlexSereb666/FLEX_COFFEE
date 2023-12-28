@@ -40,6 +40,14 @@
     transform: scale(1);
   }
 }
+@keyframes zoom_center {
+  from {
+    transform: translate(-50%, -50%) scale(0.1);
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
 @keyframes swing {
   0% {
     transform: rotate(0deg);
@@ -101,13 +109,23 @@
     transform: translateY(0);
   }
 }
+@keyframes boomBottomSlider {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 @font-face {
   font-family: 'PostalShrift';
-  src: url('../../../assets/fonts/PostalShrift.ttf');
+  src: url('../../assets/fonts/PostalShrift.ttf');
 }
 @font-face {
   font-family: 'arnamu';
-  src: url('../../../assets/fonts/arnamu.ttf');
+  src: url('../../assets/fonts/arnamu.ttf');
 }
 .coffee-house-card {
   display: flex;
@@ -228,13 +246,13 @@
   justify-content: center;
 }
 .coffee-card-button {
-  width: 170px;
+  width: 250px;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
   background-color: #995f40;
   color: #f9f4e6;
-  font-size: 16px;
+  font-size: 22px;
   cursor: pointer;
   transition: background-color 0.2s ease;
   font-family: 'arnamu', fallback-fonts;

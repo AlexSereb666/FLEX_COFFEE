@@ -2,16 +2,16 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './CoffeeHouseCard.css';
 
-import Slider from './slider/Slider';
-import InfoBlock from './info-block/InfoBlock';
-import CustomMap from './customMap/CustomMap';
+import Slider from '../../components/slider/Slider';
+import InfoBlock from '../../components/info-block/InfoBlock';
+import CustomMap from '../../components/customMap/CustomMap';
 
-import addressImg from '../../../assets/img/address-icon.png';
-import cosmos from '../../../assets/img/cosmo.jpg';
-import img1 from '../../../assets/img/coffee-houses-1.jpg';
-import img2 from '../../../assets/img/coffee-houses-2.jpg';
-import img3 from '../../../assets/img/coffee-houses-3.jpg';
-import img4 from '../../../assets/img/coffee-houses-4.jpg';
+import addressImg from '../../assets/img/address-icon.png';
+import cosmos from '../../assets/img/cosmo.jpg';
+import img1 from '../../assets/img/coffee-houses-1.jpg';
+import img2 from '../../assets/img/coffee-houses-2.jpg';
+import img3 from '../../assets/img/coffee-houses-3.jpg';
+import img4 from '../../assets/img/coffee-houses-4.jpg';
 
 function CoffeeHouseCard() {
     const [selectedImage, setSelectedImage] = useState(null);

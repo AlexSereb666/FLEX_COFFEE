@@ -40,6 +40,14 @@
     transform: scale(1);
   }
 }
+@keyframes zoom_center {
+  from {
+    transform: translate(-50%, -50%) scale(0.1);
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
 @keyframes swing {
   0% {
     transform: rotate(0deg);
@@ -75,6 +83,42 @@
     transform: rotate(0deg);
   }
 }
+@keyframes slideInLeft {
+  from {
+    left: -100px;
+  }
+  to {
+    left: 50px;
+  }
+}
+@keyframes slideInRight {
+  from {
+    right: -100px;
+  }
+  to {
+    right: 50px;
+  }
+}
+@keyframes boomBottom {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes boomBottomSlider {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 @font-face {
   font-family: 'PostalShrift';
   src: url('../../assets/fonts/PostalShrift.ttf');
@@ -84,6 +128,35 @@
   background-color: #644a353b;
   width: 100%;
   box-shadow: 0 10px 20px rgba(114, 60, 27, 0.473);
+}
+.navbar__basket-img {
+  width: 30px;
+  height: auto;
+  margin-right: 15px;
+  transition: transform 0.3s;
+}
+.navbar__basket-img:hover {
+  transform: scale(1.2);
+}
+.navbar__avatar-img {
+  width: 35px;
+  height: 35px;
+  margin-right: 15px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  transition: transform 0.3s;
+}
+.navbar__avatar-img:hover {
+  transform: scale(1.2);
+}
+.navbar__exit-img {
+  width: 25px;
+  height: auto;
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+.navbar__exit-img:hover {
+  transform: scale(1.2);
 }
 .navbar__menu {
   display: flex;

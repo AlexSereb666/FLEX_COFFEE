@@ -1,15 +1,15 @@
 import React from 'react';
 import './Main.css';
-import PhoneImg from '../../../assets/img/phone-icon.png';
-import AddressImg from '../../../assets/img/address-icon.png';
-import InformationBlock from '../../InformationBlock/InformationBlock';
-import ButtonMain from '../../../utils/button/main-page-btn/ButtonMain';
-import SocialNetwork from '../../social-network/SocialNetwork';
-import VkImg from '../../../assets/img/vk.png';
-import InstImg from '../../../assets/img/instagram.png';
-import TwitterImg from '../../../assets/img/twitter.png';
-import TelegramImg from '../../../assets/img/telegram.png';
-import CoffeeBeans from '../../../assets/img/coffee-beans.png';
+import PhoneImg from '../../assets/img/phone-icon.png';
+import AddressImg from '../../assets/img/address-icon.png';
+import VkImg from '../../assets/img/vk.png';
+import InstImg from '../../assets/img/instagram.png';
+import TwitterImg from '../../assets/img/twitter.png';
+import TelegramImg from '../../assets/img/telegram.png';
+import CoffeeBeans from '../../assets/img/coffee-beans.png';
+import InformationBlock from '../../components/InformationBlock/InformationBlock';
+import ButtonMain from '../../utils/button/main-page-btn/ButtonMain';
+import SocialNetwork from '../../components/social-network/SocialNetwork';
 
 function Main() {
   return (

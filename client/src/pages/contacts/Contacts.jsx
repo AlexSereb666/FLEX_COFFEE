@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './Contacts.css';
-import BestCoffeeImg from '../../../assets/img/best-coffee.png';
-import { feedbackReq } from '../../../http/feedbackAPI';
-import MessageBox from '../../messageBox/MessageBox';
+import BestCoffeeImg from '../../assets/img/best-coffee.png';
+import { feedbackReq } from '../../http/feedbackAPI';
+import MessageBox from '../../components/messageBox/MessageBox';
 
 function Contacts() {
   const [name, setName] = useState('');
