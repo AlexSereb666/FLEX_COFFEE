@@ -1,0 +1,45 @@
+.loading-spinner {
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+    height         : 100vh;
+}
+
+.spinner-item {
+    width       : 70px;
+    height      : 70px;
+    margin-right: 30px;
+    opacity     : 0;
+    animation   : scaleUpDown 2s infinite;
+}
+
+.item-1 {
+    animation-delay: 0.2s;
+}
+
+.item-2 {
+    animation-delay: 0.4s;
+}
+
+.item-3 {
+    animation-delay: 0.6s;
+}
+
+.item-4 {
+    animation-delay: 0.8s;
+}
+
+@keyframes scaleUpDown {
+    0%, 100% {
+        transform: scale(1);
+        opacity  : 0;
+    }
+    25%, 75% {
+        transform: scale(1.5);
+        opacity  : 1;
+    }
+    50% {
+        transform: scale(2);
+        opacity  : 0;
+    }
+}

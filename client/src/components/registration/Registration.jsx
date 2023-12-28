@@ -6,8 +6,12 @@ import Button from '../../utils/button/btn-form/BtnForm';
 import Country from '../../assets/img/Russia.jpg';
 import mem from '../../assets/video/memes.mp4';
 import mem_good from '../../assets/img/memes_good.jpg';
+import { userRegistration } from '../../http/userAPI';
+import MessageBox from '../messageBox/MessageBox';
+import { LOGIN_ROUTE } from '../../utils/consts';
+import { observer } from 'mobx-react-lite'
 
-function Registration() {
+const Registration = observer(() => {
     const navigate = useNavigate();
     const [isClosing, setIsClosing] = useState(false);
     const [lineColor, setLineColor] = useState("gray");
@@ -21,7 +25,10 @@ function Registration() {
     const [passwordOne, setPasswordOne] = useState("");
     const [passwordTwo, setPasswordTwo] = useState("");
 
-    const handleClose = () => {
+    const [showMessageBox, setShowMessageBox] = useState(false);
+    const [messageBoxMessage, setMessageBoxMessage] = useState("");
+
+    const handleClose = async () => {
         setIsClosing(true);
         setTimeout(() => navigate(-1), 200);
     }
@@ -32,6 +39,7 @@ function Registration() {
         const hasDigits = /[0-9]/.test(password); // Наличие цифр
         const hasUpperCase = /[A-Z]/.test(password); // Наличие больших букв
         const hasLowerCase = /[a-z]/.test(password); // Наличие маленьких букв
+        // eslint-disable-next-line
         const hasSpecialChars = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\]/.test(password); // Наличие специальных символов
 
         const newCheckList = [];
@@ -71,6 +79,7 @@ function Registration() {
 
     useEffect(() => {
         checkPasswordStrength();
+        // eslint-disable-next-line
     }, [passwordOne])
 
     useEffect(() => {
@@ -87,6 +96,53 @@ function Registration() {
 
         return () => clearInterval(interval);
     }, [checkList]);
+
+    const registrationUser = async () => {
+
+        if (!isStrongPassword) {
+            setMessageBoxMessage('Ошибка! Некорректный пароль');
+            setShowMessageBox(true);
+            return false
+        }
+        if (passwordOne !== passwordTwo) {
+            setMessageBoxMessage('Ошибка! Пароли не совпадают');
+            setShowMessageBox(true);
+            return false
+        }
+        if (!login || !phone || !email) {
+            setMessageBoxMessage('Ошибка! Некорректно заполнены данные');
+            setShowMessageBox(true);
+            return false
+        }
+
+        const response = await userRegistration(login, passwordOne, email, phone, 'USER')
+
+        // вернулся код ошибки //
+        if (typeof response === 'number') {
+            setMessageBoxMessage('Ошибка! Пользователь с такими данными уже существует!')
+            setShowMessageBox(true)
+        } else { // ошибок нет, все норм
+            console.log(response)
+
+            setMessageBoxMessage('Аккаунт успешно зарегистрирован!')
+            setShowMessageBox(true)
+
+            setLogin("")
+            setPhone("")
+            setEmail("")
+            setPasswordOne("")
+            setPasswordTwo("")
+        }
+    }
+
+    const handleCloseMessageBox = () => {
+        // Закрываем всплывающее окно
+        setShowMessageBox(false);
+
+        if (messageBoxMessage === 'Аккаунт успешно зарегистрирован!') {
+            navigate(LOGIN_ROUTE)
+        }
+    }
 
     return (
         <div className='registration'>
@@ -159,16 +215,20 @@ function Registration() {
                     setValue={setEmail} 
                     type="text" 
                     required={true} 
-                    label={'Email*'}
+                    label={'Email'}
                     maxLength={45}
                     mask={/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/}
                 />
                 <Button
                     text={'Зарегистрироваться'}
+                    onClick={registrationUser}
                 />
+                {showMessageBox && (
+                    <MessageBox message={messageBoxMessage} onClose={handleCloseMessageBox} />
+                )}
             </div>
         </div>
     )
-}
+})
 
 export default Registration;

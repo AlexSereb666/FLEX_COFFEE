@@ -1,4 +1,4 @@
-import {makeAutoObservable} from 'modx'
+import {makeAutoObservable} from 'mobx'
 
 export default class UserStore {
     constructor() {

@@ -1,10 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Navbar from './navbar/Navbar';
 import './App.css'
 import AppRouter from '../AppRouter';
+import { observer } from 'mobx-react-lite'
+import { Context } from '../index';
+import { check } from '../http/userAPI';
+import LoadingSpinner from '../components/loadingSpinner/LoadingSpinner'
 
-function App() {
+const App = observer(() => {
+  const { user } = useContext(Context)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    check().then(data => {
+      user.setUser(true)
+      user.setIsAuth(true)
+    }).finally(() => setLoading(false))
+  }, [])
+
+  if (loading) {
+    return <LoadingSpinner />;
+  }
+
   return (
     <Router>
       <div className="App">
@@ -16,6 +34,6 @@ function App() {
       </div>
     </Router>
   );
-}
+})
 
 export default App;

@@ -9,7 +9,7 @@ import CoffeeHousesCard from './components/pages/coffeeHouseCard/CoffeeHouseCard
 
 const AppRouter = () => {
     return (
-    <Routes>
+      <Routes>
         <Route path="/" element={<MainPage/>} />
         <Route path="/login" element={<Auth/>} />
         <Route path="/contacts" element={<ContactsPage/>} />
