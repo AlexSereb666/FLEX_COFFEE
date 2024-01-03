@@ -7,7 +7,7 @@ import exitIcon from '../../assets/img/exit.png'
 import './Navbar.css'
 import { Context } from '../../index';
 import { LOGIN_ROUTE, REGISTRATION_ROUTE, CONTACT_ROUTE, COFFEE_HOUSES_ROUTE, 
-  PROFILE_ROUTE } from '../../utils/consts';
+  PROFILE_USER_ROUTE } from '../../utils/consts';
 import { observer } from 'mobx-react-lite'
 
 const Navbar = observer(() => {
@@ -44,7 +44,7 @@ const Navbar = observer(() => {
           {!!localStorage.getItem('token') ? (
             <>
               <Link><img className='navbar__basket-img' src={backetIcon} alt="Basket_img" /></Link>
-              <Link to={PROFILE_ROUTE} ><img className='navbar__avatar-img' src={avatarDefault} alt="Avatar_img" /></Link>
+              <Link to={PROFILE_USER_ROUTE} ><img className='navbar__avatar-img' src={avatarDefault} alt="Avatar_img" /></Link>
               <img className='navbar__exit-img' src={exitIcon} alt="Exit_img" onClick={() => logOut()} />
             </>
           ) : (

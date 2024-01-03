@@ -72,6 +72,63 @@ class userController {
         // тут будет много связей с пользователем //
         // стоит делать в последнею очередь, после реализации полной БД //
     }
+
+    // Смена пароля //
+    async changePassword(req, res, next) {
+        try {
+            const { oldPassword, newPassword, userId } = req.body;
+
+            // Находим пользователя //
+            const user = await User.findByPk(userId);
+
+            // Проверяем старый пароль //
+            const comparePassword = bcrypt.compareSync(oldPassword, user.password);
+            if (!comparePassword) {
+                return next(ApiError.internal('Неправильный старый пароль'));
+            }
+
+            // Хэшируем новый пароль //
+            const hashPassword = await bcrypt.hash(newPassword, 5);
+
+            // Обновляем пароль пользователя //
+            await User.update({ password: hashPassword }, { where: { id: userId } });
+
+            return res.json({ message: 'Пароль успешно изменен' });
+        } catch (error) {
+            next(error);
+        }
+    }
+
+    // изменение данных аккаунта //
+    async changeProfile(req, res, next) {
+        try {
+            const { newLogin, newEmail, newPhone, userId } = req.body;
+    
+            // Проверяем, существуют ли другие пользователи с такими данными
+            const existingLogin = await User.findOne({ where: { login: newLogin, id: { [Op.ne]: userId } } });
+            const existingEmail = await User.findOne({ where: { email: newEmail, id: { [Op.ne]: userId } } });
+            const existingPhone = await User.findOne({ where: { phone: newPhone, id: { [Op.ne]: userId } } });
+    
+            if (existingLogin) {
+                return next(ApiError.internal('Данный логин занят'));
+            }
+    
+            if (existingEmail) {
+                return next(ApiError.internal('Данный email занят'));
+            }
+    
+            if (existingPhone) {
+                return next(ApiError.internal('Данный номер телефона занят'));
+            }
+    
+            // Обновляем данные пользователя
+            await User.update({ login: newLogin, email: newEmail, phone: newPhone }, { where: { id: userId } });
+    
+            return res.json({ message: 'Данные пользователя успешно изменены' });
+        } catch (error) {
+            next(error);
+        }
+    }
 }
 
 module.exports = new userController()

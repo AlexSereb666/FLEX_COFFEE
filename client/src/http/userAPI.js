@@ -12,7 +12,7 @@ export const userRegistration = async (login, password, email, phone, role) => {
             return 500; // внутренняя ошибка сервера
         }
     }
-};
+}
 
 export const loginFunc = async (login, password) => {
     const { data } = await $host.post('api/user/login', {login, password})
@@ -28,5 +28,31 @@ export const check = async () => {
     } catch (e) {
         console.log(e)
     }
-    
+}
+
+export const changePassword = async (oldPassword, newPassword, userId) => {
+    try {
+        const { data } = await $authHost.post('api/user/change-password', { oldPassword, newPassword, userId });
+        return data.message;
+    } catch (error) {
+        if (error.response) {
+            return error.response.data.message;
+        } else {
+            return 'Внутренняя ошибка сервера';
+        }
+    }
+}
+
+export const changeProfile = async (newLogin, newEmail, newPhone, userId) => {
+    try {
+        const { data } = await $authHost.post('api/user/change-profile', { newLogin, newEmail, newPhone, userId });
+        localStorage.setItem('token', data.token);
+        return jwtDecode(data.token)
+    } catch (error) {
+        if (error.response) {
+            return error.response.data.message;
+        } else {
+            return 'Внутренняя ошибка сервера';
+        }
+    }
 }

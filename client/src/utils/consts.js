@@ -1,5 +1,7 @@
-export const PROFILE_ROUTE = '/profile'
 export const LOGIN_ROUTE = '/login'
 export const REGISTRATION_ROUTE = '/registration'
 export const CONTACT_ROUTE = '/contacts'
 export const COFFEE_HOUSES_ROUTE = '/coffeehouses'
+export const MAIN_ROUTE = '/'
+export const COFFEE_HOUSE_CARD_ROUTE = '/coffeehouse/:id'
+export const PROFILE_USER_ROUTE = '/profile'

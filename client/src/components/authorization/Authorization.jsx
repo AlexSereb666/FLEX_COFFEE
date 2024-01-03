@@ -7,7 +7,7 @@ import './Authorization.css';
 import { loginFunc } from '../../http/userAPI';
 import { Context } from '../../index';
 import MessageBox from '../messageBox/MessageBox';
-import { PROFILE_ROUTE } from '../../utils/consts';
+import { PROFILE_USER_ROUTE } from '../../utils/consts';
 import { REGISTRATION_ROUTE } from '../../utils/consts';
 import { observer } from 'mobx-react-lite'
 
@@ -46,7 +46,7 @@ const Authorization = observer (() => {
                 setLogin('')
                 setPassword('')
 
-                navigate(PROFILE_ROUTE)
+                navigate(PROFILE_USER_ROUTE)
             } catch (e) {
                 setMessageBoxMessage(`${e.response.data.message}`)
                 setShowMessageBox(true)
