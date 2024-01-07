@@ -12,6 +12,8 @@ const InputAuth = (props) => {
                 type={props.type} 
                 value={props.value}  
                 required={props.required}
+                max={props.max}
+                min={props.min}
                 //maxLength={props.maxLength}
             />
             <label className="input-group__label">{props.label}</label>

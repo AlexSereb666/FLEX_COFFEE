@@ -18,7 +18,7 @@ class productController {
     async getAll(req, res) {
         let {ProductViewId, ProductTypeId, limit, page} = req.query
         page = page || 1 // количество страниц
-        limit = limit || 9 // количество продуктов на 1 странице
+        limit = limit || 8 // количество продуктов на 1 странице
         let offset = page * limit - limit
         let products;
         if (!ProductViewId && !ProductTypeId) {

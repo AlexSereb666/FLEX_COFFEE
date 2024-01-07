@@ -1,0 +1,38 @@
+@import '../../utils/colors';
+@import '../../utils/fonts';
+
+@font-face {
+    font-family: 'arnamu';
+    src: url('../../assets/fonts/arnamu.ttf'); 
+}
+
+.Custom-Dropdown {
+    font-size       : @font-size-aut-reg-modal-inp;
+    width           : 100%;
+    padding         : 8px;
+    border          : 3px solid @main-page-text ;
+    border-radius   : 5px;
+    background-color: transparent;
+    margin-bottom   : 20px;
+
+    &__main {
+        color      : @main-page-btn-active;
+        height     : 30px;
+        font-family: 'arnamu';
+    }
+
+    &__option {
+        background-color: #f8f8f800;
+        padding         : 5px;
+    }
+}
+
+.Custom-Dropdown option:checked {
+    background-color: @checkBox-active;
+}
+
+.Custom-Dropdown option {
+    background : @main-page-btn-hover;
+    color      : @main-page-title-two;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}

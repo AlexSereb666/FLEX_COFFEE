@@ -1,0 +1,125 @@
+@import '../../utils/colors';
+@import '../../utils/fonts';
+
+@font-face {
+    font-family: 'arnamu';
+    src: url('../../assets/fonts/arnamu.ttf'); 
+}
+
+@font-face {
+    font-family: 'PostalShrift';
+    src: url('../../assets/fonts/PostalShrift.ttf');
+}
+
+.product-card {
+    display       : flex;
+    height        : 85vh;
+    width         : 140vh;
+    padding       : 30px 30px;
+    margin        : auto;
+    margin-top    : 30px;
+    position      : relative;
+    display       : flex;
+    flex-direction: column;
+  
+    background-color: rgba(0, 0, 0, 0.4);
+    box-shadow      : 0 0 50px rgba(255, 255, 255, 0.3);
+    border-radius   : 3%;
+
+    &__top {
+        display: flex;
+    }
+
+    &__img-product {
+        pointer-events: none;
+        user-select   : none;
+        margin-left   : 40px;
+        
+        &__img {
+            width        : 400px;
+            height       : 400px;
+            object-fit   : cover;
+            border       : 5px solid @main-page-text;
+            border-radius: 10px;
+        }
+    }
+
+    &__rating {
+        display       : flex;
+        flex-direction: column;
+        align-items   : center;
+        text-align    : center;
+        margin-left   : 30px;
+        position      : relative;
+        pointer-events: none;
+        user-select   : none;
+
+        &__name {
+            font-size     : 48px;
+            padding-bottom: 10px;
+            font-family   : 'PostalShrift';
+        }
+
+        &__img {
+            width     : 340px;
+            height    : 340px;
+            object-fit: cover;
+        }
+
+        &__num {
+            position  : absolute;
+            top       : 50%;
+            font-size : 82px;
+            color     : @main-page-btn-background;
+            text-align: center;
+        }
+    }
+
+    &__buy {
+        margin-left   : 50px;
+        width         : 40vh;
+        height        : 34vh;
+        box-shadow    : 0 0 50px rgba(255, 255, 255, 0.3);
+        border        : 3px solid @main-page-btn-hover;
+        border-radius : 20px;
+
+        &__price {
+            font-size     : 72px;
+            display       : flex;
+            flex-direction: column;
+            align-items   : center;
+            font-family   : 'arnamu';
+            padding-top   : 20px;
+            padding-bottom: 230px;
+            pointer-events: none;
+            user-select   : none;
+        }
+    }
+
+    &__bottom {
+        margin-left   : 40px;
+        margin-top    : 10px;
+        padding-right : 40px;
+        font-family   : 'arnamu';
+        pointer-events: none;
+        user-select   : none;
+    
+        h3 {
+            font-size: 42px;
+        }
+    
+        &__one {
+            font-size : 24px;
+            background: linear-gradient(to right, @main-page-btn-background, transparent 95%);
+            transition: background 0.5s ease;
+            margin-top: 5px;
+        }
+
+        &__two {
+            font-size : 24px;
+            background: linear-gradient(to right, @main-page-btn-active, transparent 95%);
+            transition: background 0.5s ease;
+            margin-top: 5px;
+        }
+    }
+}

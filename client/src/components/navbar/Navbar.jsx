@@ -7,7 +7,7 @@ import exitIcon from '../../assets/img/exit.png'
 import './Navbar.css'
 import { Context } from '../../index';
 import { LOGIN_ROUTE, REGISTRATION_ROUTE, CONTACT_ROUTE, COFFEE_HOUSES_ROUTE, 
-  PROFILE_USER_ROUTE } from '../../utils/consts';
+  PROFILE_USER_ROUTE, PRODUCT_MENU_ROUTE } from '../../utils/consts';
 import { observer } from 'mobx-react-lite'
 
 const Navbar = observer(() => {
@@ -29,7 +29,7 @@ const Navbar = observer(() => {
           <div className="navbar__left">
               <div className="navbar__item"><Link to={COFFEE_HOUSES_ROUTE} className="navbar__link">Кофейни</Link></div>
               <div className="navbar__item"><Link to="/" className="navbar__link">Отзывы</Link></div>
-              <div className="navbar__item"><Link to="/" className="navbar__link">Меню</Link></div>
+              <div className="navbar__item"><Link to={PRODUCT_MENU_ROUTE} className="navbar__link">Меню</Link></div>
             </div>
             <div className="navbar__logo">
               <img src={logo} alt=""/>

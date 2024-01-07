@@ -1,0 +1,192 @@
+@keyframes dropDown {
+  from {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes authZoomIn {
+  from {
+    transform: scale(0.1);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes authZoomOut {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0.1);
+  }
+}
+@keyframes spinXAnimation {
+  0% {
+    transform: rotateX(0deg);
+  }
+  100% {
+    transform: rotateX(360deg);
+  }
+}
+@keyframes zoom {
+  from {
+    transform: scale(0.1);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes zoom_center {
+  from {
+    transform: translate(-50%, -50%) scale(0.1);
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+@keyframes swing {
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(2deg);
+  }
+  20% {
+    transform: rotate(-2deg);
+  }
+  30% {
+    transform: rotate(2deg);
+  }
+  40% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+  60% {
+    transform: rotate(-2deg);
+  }
+  70% {
+    transform: rotate(2deg);
+  }
+  80% {
+    transform: rotate(-2deg);
+  }
+  90% {
+    transform: rotate(2deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+@keyframes slideInLeft {
+  from {
+    left: -100px;
+  }
+  to {
+    left: 50px;
+  }
+}
+@keyframes slideInRight {
+  from {
+    right: -100px;
+  }
+  to {
+    right: 50px;
+  }
+}
+@keyframes boomBottom {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes boomBottomSlider {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@font-face {
+  font-family: 'arnamu';
+  src: url('../../assets/fonts/arnamu.ttf');
+}
+@font-face {
+  font-family: 'PostalShrift';
+  src: url('../../assets/fonts/PostalShrift.ttf');
+}
+.product-item {
+  flex-basis: 25%;
+  box-sizing: border-box;
+  padding-bottom: 20px;
+  animation: authZoomIn 0.5s forwards;
+}
+.product-item__img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  margin: 0 auto;
+  display: block;
+  box-shadow: 0 0 50px rgba(255, 255, 255, 0.3);
+  border: 2px solid #855034;
+  border-radius: 5px;
+  pointer-events: none;
+  user-select: none;
+}
+.product-item__wrapper {
+  border: 3px solid #BE815F;
+  border-radius: 10px;
+  width: 230px;
+  padding: 13px;
+  background-color: rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 50px rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+}
+.product-item__wrapper:hover {
+  border-color: #c4b42c;
+}
+.product-item__name {
+  font-family: 'PostalShrift';
+  font-size: 18px;
+  text-align: center;
+  margin-top: 5px;
+  color: #E9BEA5;
+  pointer-events: none;
+  user-select: none;
+}
+.product-item__price-and-rating {
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  pointer-events: none;
+  user-select: none;
+}
+.product-item__price-and-rating__rating {
+  font-family: 'arnamu';
+  font-size: 18px;
+  color: #c4b42c;
+}
+.product-item__price-and-rating__rating__star {
+  width: 25px;
+  height: 25px;
+}
+.product-item__price-and-rating__price {
+  font-family: 'PostalShrift';
+  font-size: 18px;
+  margin-top: 5px;
+  color: #d62b2b;
+}

@@ -1,0 +1,192 @@
+@keyframes dropDown {
+  from {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes authZoomIn {
+  from {
+    transform: scale(0.1);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes authZoomOut {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0.1);
+  }
+}
+@keyframes spinXAnimation {
+  0% {
+    transform: rotateX(0deg);
+  }
+  100% {
+    transform: rotateX(360deg);
+  }
+}
+@keyframes zoom {
+  from {
+    transform: scale(0.1);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes zoom_center {
+  from {
+    transform: translate(-50%, -50%) scale(0.1);
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+@keyframes swing {
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(2deg);
+  }
+  20% {
+    transform: rotate(-2deg);
+  }
+  30% {
+    transform: rotate(2deg);
+  }
+  40% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+  60% {
+    transform: rotate(-2deg);
+  }
+  70% {
+    transform: rotate(2deg);
+  }
+  80% {
+    transform: rotate(-2deg);
+  }
+  90% {
+    transform: rotate(2deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+@keyframes slideInLeft {
+  from {
+    left: -100px;
+  }
+  to {
+    left: 50px;
+  }
+}
+@keyframes slideInRight {
+  from {
+    right: -100px;
+  }
+  to {
+    right: 50px;
+  }
+}
+@keyframes boomBottom {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes boomBottomSlider {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@font-face {
+  font-family: 'arnamu';
+  src: url('../../assets/fonts/arnamu.ttf');
+}
+@font-face {
+  font-family: 'PostalShrift';
+  src: url('../../assets/fonts/PostalShrift.ttf');
+}
+.product-menu {
+  height: 85vh;
+  width: 180vh;
+  padding: 20px 20px;
+  margin: auto;
+  margin-top: 30px;
+  position: relative;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 50px rgba(255, 255, 255, 0.3);
+  border-radius: 3%;
+}
+.product-menu__stetchem {
+  width: 170px;
+  height: auto;
+  position: absolute;
+  top: -15px;
+  right: 50px;
+  opacity: 0.5;
+  animation: authZoomIn 0.5s forwards;
+}
+.product-menu__left-section {
+  flex: 1;
+  padding-right: 30px;
+  padding-top: 50px;
+  position: relative;
+}
+.product-menu__left-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 10px;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(141, 83, 8, 0.658) 50%, rgba(168, 114, 13, 0));
+  /* Градиент от прозрачного к черному */
+}
+.product-menu__right-section {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+}
+.product-menu__top-section {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  margin-left: 50px;
+  position: relative;
+}
+.product-menu__top-section::before {
+  content: '';
+  position: absolute;
+  top: 80px;
+  right: 0;
+  left: 0;
+  height: 5px;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(141, 83, 8, 0.658) 50%, rgba(168, 114, 13, 0));
+}
+.product-menu__bottom-section {
+  flex: 10;
+  margin-top: 30px;
+  margin-left: 50px;
+}

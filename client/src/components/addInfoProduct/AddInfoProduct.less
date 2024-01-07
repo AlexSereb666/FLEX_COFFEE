@@ -1,0 +1,61 @@
+@import '../../utils/colors';
+@import '../../utils/fonts';
+@import '../../utils/image';
+@import '../../utils/animations';
+  
+@font-face {
+    font-family: 'arnamu';
+    src: url('../../assets/fonts/arnamu.ttf'); 
+}
+
+.add-info-menu {
+    position        : fixed;
+    top             : 50%;
+    left            : 50%;
+    transform       : translate(-50%, -50%);
+    padding         : 20px;
+    background-color: @additional-color;
+    border          : 1px solid @message-box-border;
+    box-shadow      : 0 0 50px rgba(255, 255, 255, 0.5);
+    z-index         : 1000;
+    text-align      : center;
+    animation       : zoom_center 0.5s forwards;
+    border-radius   : 20px;
+    padding-top     : 50px;
+    display         : grid;
+    gap             : 15px;
+    
+    grid-template-rows: repeat(auto-fill, minmax(1fr, auto));
+
+    &__close-btn {
+        position : absolute;
+        top      : 10px;
+        right    : 10px;
+        cursor   : pointer;
+        font-size: 26px;
+        color    : @border-avatar;
+    }
+
+    &__close-btn:hover {
+        color: @main-page-title-two;
+    }
+
+    &__input {
+        font-size       : 24px;
+        color           : @main-page-title-two;
+        background-color: @main-page-btn-hover;
+        margin          : 10px;
+    }
+
+    &__btn-delete {
+        font-size       : 24px;
+        color           : @main-page-title-two;
+        background-color: @main-page-btn-hover;
+        padding         : 2px;
+    }
+
+    &__container {
+        display    : flex;
+        align-items: center;
+    }
+}

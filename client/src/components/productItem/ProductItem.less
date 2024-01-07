@@ -1,0 +1,86 @@
+@import '../../utils/colors';
+@import '../../utils/animations';
+
+@font-face {
+    font-family: 'arnamu';
+    src: url('../../assets/fonts/arnamu.ttf'); 
+}
+
+@font-face {
+    font-family: 'PostalShrift';
+    src: url('../../assets/fonts/PostalShrift.ttf');
+}
+
+.product-item {
+    flex-basis    : 25%;
+    box-sizing    : border-box;
+    flex-basis    : 25%;
+    box-sizing    : border-box;
+    padding-bottom: 20px;
+    animation     : authZoomIn 0.5s forwards;
+    
+    &__img {
+        width         : 200px;
+        height        : 200px;
+        object-fit    : cover;
+        margin        : 0 auto;
+        display       : block;
+        box-shadow    : 0 0 50px rgba(255, 255, 255, 0.3);
+        border        : 2px solid @main-page-btn-hover;
+        border-radius : 5px;
+        pointer-events: none;
+        user-select   : none;
+    }
+
+    &__wrapper {
+        border          : 3px solid @main-page-text;
+        border-radius   : 10px;
+        width           : 230px;
+        padding         : 13px;
+        background-color: rgba(0, 0, 0, 0.6);
+        box-shadow      : 0 0 50px rgba(255, 255, 255, 0.3);
+        cursor          : pointer;
+
+        &:hover {
+            border-color: @main-page-title;
+        }
+    }
+
+    &__name {
+        font-family   : 'PostalShrift';
+        font-size     : 18px;
+        text-align    : center;
+        margin-top    : 5px;
+        color         : @main-page-title-two;
+        pointer-events: none;
+        user-select   : none;
+    }
+
+    &__price-and-rating {
+        padding-bottom : 10px;
+        display        : flex;
+        justify-content: space-between;
+        align-items    : center;
+        padding        : 0 30px;
+        pointer-events : none;
+        user-select    : none;
+
+        &__rating {
+            font-family: 'arnamu';
+            font-size  : 18px;
+            color      : @main-page-title;
+    
+            &__star {
+                width : 25px;
+                height: 25px;
+            }
+        }
+    
+        &__price {
+            font-family: 'PostalShrift';
+            font-size  : 18px;
+            margin-top : 5px;
+            color      : @color-price;
+        }
+    }
+}

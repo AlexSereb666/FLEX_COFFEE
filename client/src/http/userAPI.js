@@ -9,7 +9,7 @@ export const userRegistration = async (login, password, email, phone, role) => {
         if (error.response) {
             return error.response.status
         } else {
-            return 500; // внутренняя ошибка сервера
+            return 500;
         }
     }
 }

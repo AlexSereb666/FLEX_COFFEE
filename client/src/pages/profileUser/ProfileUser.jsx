@@ -5,15 +5,21 @@ import defaultAvatar from '../../assets/img/cosmo.jpg'
 import { jwtDecode } from 'jwt-decode'
 import ModalEditPassword from '../../components/editProfileModalPassword/EditProfileModalPassword'
 import ModalEditProfile from '../../components/editProfileModal/EditProfileModal'
+import AdminMenu from '../../components/adminMenu/AdminMenu';
 
 function ProfileUser() {
   const user = jwtDecode(localStorage.getItem('token'))
 
   const [showModalEditPassword, setShowModalEditPassword] = useState(false);
   const [showModalEditProfile, setShowModalEditProfile] = useState(false);
+  const [showAdminMenu, setShowAdminMenu] = useState(false);
 
   const handleCloseModalEditPassword = () => {
     setShowModalEditPassword(false);
+  }
+
+  const handleCloseAdminMenu = () => {
+    setShowAdminMenu(false);
   }
 
   const handleOpenModalEditPassword = () => {
@@ -26,6 +32,10 @@ function ProfileUser() {
 
   const handleOpenModalEditProfile = () => {
     setShowModalEditProfile(true);
+  }
+
+  const handleOpenAdminMenu = () => {
+    setShowAdminMenu(true);
   }
 
   return (
@@ -79,6 +89,13 @@ function ProfileUser() {
         <BtnForm
             text="Способ оплаты"
         />
+        <br/>
+        {user.role === 'ADMIN' && (
+            <BtnForm
+              text="Меню админа"
+              onClick={handleOpenAdminMenu}
+            />
+        )}
       </div>
       {showModalEditPassword && (
         <ModalEditPassword
@@ -90,6 +107,11 @@ function ProfileUser() {
         <ModalEditProfile
           user={user}
           onClose={handleCloseModalEditProfile} 
+        />
+      )}
+      {showAdminMenu && (
+        <AdminMenu
+          onClose={handleCloseAdminMenu} 
         />
       )}
     </div>
