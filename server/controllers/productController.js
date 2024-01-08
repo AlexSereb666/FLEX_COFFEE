@@ -2,6 +2,7 @@ const uuid = require('uuid')
 const path = require('path')
 const {Product, Product_info} = require('../models/models')
 const ApiError = require('../error/ApiError')
+const fs = require('fs').promises;
 
 class productController {
     // получить один продукт //
@@ -43,10 +44,11 @@ class productController {
             const {img} = req.files
             let fileName = uuid.v4() + ".jpg" 
             img.mv(path.resolve(__dirname, '..', 'static', fileName))
+            const product = await Product.create({name, price, ProductViewId, ProductTypeId, count, img: fileName})
 
             if (info) {
                 info = JSON.parse(info)
-                info.array.forEach(i => {
+                info.forEach(i => {
                     Product_info.create({
                         title: i.title,
                         description: i.description,
@@ -54,9 +56,7 @@ class productController {
                     })
                 });
             }
-    
-            const product = await Product.create({name, price, ProductViewId, ProductTypeId, count, img: fileName})
-    
+  
             return res.json(product)
         } catch (e) {
             next(ApiError.badRequest(e.messgae))

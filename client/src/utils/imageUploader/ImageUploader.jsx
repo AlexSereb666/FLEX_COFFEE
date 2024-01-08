@@ -12,7 +12,7 @@ const ImageUploader = ({ onUpload }) => {
 
       reader.onloadend = () => {
         setSelectedImage(reader.result);
-        onUpload(reader.result); // Передаем данные изображения обратно в родительский компонент
+        onUpload(file); // Теперь передаем объект файла
       };
 
       reader.readAsDataURL(file);

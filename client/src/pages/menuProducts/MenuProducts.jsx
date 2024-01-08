@@ -4,6 +4,7 @@ import TypeBar from '../../components/typeBar/TypeBar';
 import ViewBar from '../../components/viewBar/ViewBar';
 import ProductList from '../../components/productList/ProductList';
 import Stetchem from '../../assets/img/Стетхем.png'
+import Pages from '../../components/pages/Pages';
 
 function MenuProducts() {
   return (
@@ -20,6 +21,9 @@ function MenuProducts() {
 
         <div className="product-menu__bottom-section">
           <ProductList/>
+        </div>
+        <div className="product-menu__pages">
+          <Pages/>
         </div>
       </div>
     </div>

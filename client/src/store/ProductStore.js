@@ -2,48 +2,47 @@ import { makeAutoObservable } from 'mobx'
 
 export default class ProductStore {
     constructor() {
-        this._type = [
-            {id: 1, name: 'Чай' },
-            {id: 2, name: 'Кофе' },
-            {id: 3, name: 'Пирожные' },
-            {id: 4, name: 'Торты' }
-        ]
-        this._view = [
-            {id: 1, name: 'Напитки' },
-            {id: 2, name: 'Десерты' }
-        ]
-        this._products = [
-            {id: 1, name: 'Капучино', price: 100, rating: 5, img: 'https://klike.net/uploads/posts/2023-03/1678856583_3-22.jpg', count: 10},
-            {id: 2, name: 'Эспрессо', price: 80, rating: 5, img: 'https://klike.net/uploads/posts/2023-03/1678856583_3-22.jpg', count: 10},
-            {id: 3, name: 'Амаретто', price: 120, rating: 5, img: 'https://klike.net/uploads/posts/2023-03/1678856583_3-22.jpg', count: 10},
-            {id: 4, name: 'Раф-кофе', price: 220, rating: 5, img: 'https://klike.net/uploads/posts/2023-03/1678856583_3-22.jpg', count: 10},
-            {id: 5, name: 'Наполеон', price: 400, rating: 5, img: 'https://klike.net/uploads/posts/2023-03/1678856583_3-22.jpg', count: 10},
-            {id: 6, name: 'Картошка', price: 50, rating: 5, img: 'https://klike.net/uploads/posts/2023-03/1678856583_3-22.jpg', count: 10},
-            {id: 7, name: 'Эклер', price: 75, rating: 5, img: 'https://klike.net/uploads/posts/2023-03/1678856583_3-22.jpg', count: 10},
-        ]
+        this._types = []
+        this._views = []
+        this._products = []
         this._selectedType = {}
         this._selectedView = {}
+        this._page = 1
+        this._totalCount = 0
+        this._limit = 8
         makeAutoObservable(this)
+    }
+
+    setPage(page) {
+        this._page = page
+    }
+
+    setTotalCount(totalCount) {
+        this._totalCount = totalCount
+    }
+
+    setLimit(limit) {
+        this._limit = limit
     }
 
     setTypes(types) {
         this._types = types
     }
 
-    setView(views) {
+    setViews(views) {
         this._views = views
     }
 
-    setProduct(products) {
+    setProducts(products) {
         this._products = products
     }
 
     get types() {
-        return this._type
+        return this._types
     }
 
     get views() {
-        return this._view
+        return this._views
     }
 
     get products() {
@@ -59,10 +58,24 @@ export default class ProductStore {
     }
 
     setSelectedType(type) {
+        this.setPage(1)
         this._selectedType = type
     }
 
     setSelectedView(view) {
+        this.setPage(1)
         this._selectedView = view
+    }
+
+    get page() {
+        return this._page
+    }
+
+    get totalCount() {
+        return this._totalCount
+    }
+
+    get limit() {
+        return this._limit
     }
 }

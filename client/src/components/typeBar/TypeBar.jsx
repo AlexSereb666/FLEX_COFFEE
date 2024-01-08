@@ -1,10 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './TypeBar.css';
 import { observer } from 'mobx-react-lite'
 import { Context } from '../../index';
+import { fetchTypes } from '../../http/productAPI';
 
 const TypeBar = observer(() => {
     const { product } = useContext(Context);
+
+    useEffect(() => {
+        fetchTypes().then(data => product.setTypes(data))
+    }, [])
+
     return (
         <div className="type-bar">
             {product.types.map(type =>

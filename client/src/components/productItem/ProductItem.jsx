@@ -6,10 +6,11 @@ import { PRODUCT_ROUTE } from '../../utils/consts';
 
 const ProductItem = ({product}) => {
     const navigate = useNavigate()
+
     return (
         <div className="product-item">
             <div className="product-item__wrapper" onClick={() => navigate(PRODUCT_ROUTE + '/' + product.id)}>
-                <img className="product-item__img" src={product.img} alt="error"/>
+                <img className="product-item__img" src={process.env.REACT_APP_API_URL + product.img} alt="error"/>
                 <div className="product-item__info">
                     <div className="product-item__name">
                         {product.name}

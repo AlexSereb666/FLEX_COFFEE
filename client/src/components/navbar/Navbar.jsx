@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../assets/img/logo.png'
 import backetIcon from '../../assets/img/backet.png'
@@ -9,9 +9,16 @@ import { Context } from '../../index';
 import { LOGIN_ROUTE, REGISTRATION_ROUTE, CONTACT_ROUTE, COFFEE_HOUSES_ROUTE, 
   PROFILE_USER_ROUTE, PRODUCT_MENU_ROUTE } from '../../utils/consts';
 import { observer } from 'mobx-react-lite'
+import { fetchViews, fetchTypes } from '../../http/productAPI';
 
 const Navbar = observer(() => {
   const { user } = useContext(Context)
+  const { product } = useContext(Context);
+
+  useEffect(() => {
+      fetchViews().then(data => product.setViews(data))
+      fetchTypes().then(data => product.setTypes(data))
+  }, [])
 
   const navigate = useNavigate()
 

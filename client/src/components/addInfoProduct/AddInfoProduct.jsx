@@ -33,6 +33,12 @@ const AddInfoProduct = ({ onClose, updateInfo, listInfo }) => {
     );
   };
 
+  /*
+  const changeInfo = (key, value, number) => {
+    setInfo(info.map(i => i.number === number ? {...i, [key]: value} : i))
+  }
+  */
+
   return (
     <>
       <div className="overlay" />

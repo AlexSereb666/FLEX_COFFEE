@@ -6,11 +6,24 @@ import { Context } from '../../index'
 import CustomDropdown from '../../utils/customDropdown/CustomDropdown';
 import ImageUploader from '../../utils/imageUploader/ImageUploader';
 import AddInfoProduct from '../addInfoProduct/AddInfoProduct';
+import { createProduct } from '../../http/productAPI';
+import MessageBox from '../messageBox/MessageBox';
 
 const CreateProduct = ({onClose}) => {
     const { product } = useContext(Context)
 
     const [showModalAddInfo, setShowModalAddInfo] = useState(false);
+
+    const [showModalMessageBox, setShowModalMessageBox] = useState(false);
+    const [messageBoxMessage, setMessageBoxMessage] = useState("");
+
+    const handleOpeneModalMessageBox = () => {
+        setShowModalMessageBox(true);
+    }
+
+    const handleCloseModalMessageBox = () => {
+        setShowModalMessageBox(false);
+    }
 
     const handleOpeneModalAddInfo = () => {
         setShowModalAddInfo(true);
@@ -79,6 +92,65 @@ const CreateProduct = ({onClose}) => {
         }
     }, [count]);
 
+    const addProduct = () => {
+
+        if (name.trim() === "") {
+            setMessageBoxMessage("Введите название продукта")
+            handleOpeneModalMessageBox(true)
+            return
+        }
+
+        const formData = new FormData()
+        formData.append('name', name)
+        formData.append('price', price)
+        formData.append('rating', rating)
+        formData.append('count', count)
+
+        if (uploadedImage === null) {
+            setMessageBoxMessage("Выберите изображение продукта")
+            handleOpeneModalMessageBox(true)
+            return
+        }
+        formData.append('img', uploadedImage)
+
+        const selectedTypeObject = product.types.find(option => option.name === selectType);
+        if (selectedTypeObject) {
+            const selectedTypeId = selectedTypeObject.id;
+            formData.append('ProductTypeId', selectedTypeId)
+        } else {
+            setMessageBoxMessage("Выберите тип продукта")
+            handleOpeneModalMessageBox(true)
+            return
+        }
+
+        const selectedViewObject = product.views.find(option => option.name === selectView);
+        if (selectedViewObject) {
+            const selectedViewId = selectedViewObject.id;
+            formData.append('ProductViewId', selectedViewId)
+        } else {
+            setMessageBoxMessage("Выберите вид продукта")
+            handleOpeneModalMessageBox(true)
+            return
+        }
+
+        formData.append('info', JSON.stringify(info))
+        createProduct(formData)
+
+        setMessageBoxMessage("Продукт успешно добавлен")
+        handleOpeneModalMessageBox(true)
+
+        setName("")
+        setPrice("0")
+        setRating("0")
+        setCount("0")
+
+        setSelectType("")
+        setSelectView("")
+
+        setInfo([])
+        setUploadedImage(null);
+    }
+
     return (
         <>
         <div className="overlay" />
@@ -139,6 +211,7 @@ const CreateProduct = ({onClose}) => {
             />
             <Btn
                 text="Добавить продукт"
+                onClick={addProduct}
             />
         </div>
         {showModalAddInfo && (
@@ -146,6 +219,12 @@ const CreateProduct = ({onClose}) => {
                 onClose={handleCloseModalAddInfo} 
                 updateInfo={handleUpdateInfo}
                 listInfo={info}
+            />
+        )}
+        {showModalMessageBox && (
+            <MessageBox
+                onClose={handleCloseModalMessageBox} 
+                message={messageBoxMessage}
             />
         )}
         </>

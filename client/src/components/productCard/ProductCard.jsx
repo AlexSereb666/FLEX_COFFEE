@@ -1,21 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import './ProductCard.css';
 import StarImg from '../../assets/img/star.png'
 import BtnCustom from '../../utils/button/btn-form/BtnForm'
+import { fetchOneProduct } from '../../http/productAPI';
 
 const ProductCard = () => {
-    const product = {id: 1, name: 'Капучино', price: 100, rating: 5, img: 'https://klike.net/uploads/posts/2023-03/1678856583_3-22.jpg', count: 10}
-    const description = [
-        {id: 1, title: 'Объем', description: '200мл'},
-        {id: 2, title: 'Добавки', description: 'Сливочный соус'},
-        {id: 3, title: 'Сахар', description: 'два кубика'},
-        {id: 4, title: 'Молоко', description: '50мл'},
-    ]
+    const [product, setProduct] = useState({info: []})
+    const { id } = useParams()
+
+    useEffect(() => {
+        fetchOneProduct(id).then(data => setProduct(data))
+    }, [])
+
     return (
         <div className="product-card">
             <div className="product-card__top">
                 <div className="product-card__img-product">
-                    <img className="product-card__img-product__img" src={product.img} alt="Нет изображения"/>
+                    <img className="product-card__img-product__img" src={process.env.REACT_APP_API_URL + product.img} alt="Нет изображения"/>
                 </div>
                 <div className="product-card__rating">
                     <div className="product-card__rating__name">
@@ -37,7 +39,7 @@ const ProductCard = () => {
             </div>
             <div className="product-card__bottom">
                 <h3>Описание</h3>
-                {description.map((info, index) => 
+                {product.info.map((info, index) => 
                     <div className={`product-card__bottom__${index % 2 === 0 ? "one" : "two"}`}>
                         {info.title}: {info.description}
                     </div>

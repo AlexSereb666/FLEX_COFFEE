@@ -1,0 +1,32 @@
+@import "../../utils/colors";
+@import "../../utils/fonts";
+@import "../../utils/image";
+@import '../../utils/animations';
+
+@font-face {
+    font-family: 'PostalShrift';
+    src: url('../../assets/fonts/PostalShrift.ttf'); 
+}  
+
+.pages-container {
+    display        : flex;
+    justify-content: center;
+    animation      : zoom 0.5s forwards;
+
+    &__item {
+        border          : 2px solid @main-page-title-two;
+        background-color: @main-page-btn-hover;
+        padding         : 8px;
+        margin          : 4px;
+        font-size       : 16px;
+        font-family     : 'PostalShrift';
+        border-radius   : 5px;
+        cursor          : pointer;
+
+        &.active {
+            background-color: @main-page-title-two;
+            color           : @main-page-btn-active;
+            border          : 2px solid @main-page-btn-active;
+        }
+    }
+}
