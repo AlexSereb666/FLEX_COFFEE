@@ -1,0 +1,57 @@
+@import '../../utils/colors';
+@import '../../utils/fonts';
+
+@font-face {
+    font-family: 'arnamu';
+    src: url('../../assets/fonts/arnamu.ttf'); 
+}
+
+@font-face {
+    font-family: 'PostalShrift';
+    src: url('../../assets/fonts/PostalShrift.ttf');
+}
+
+.custom-checkbox {
+    display    : flex;
+    align-items: center;
+    cursor     : pointer;
+    font-size  : 16px;
+}
+
+.custom-checkbox input {
+    display: none;
+}
+
+.checkmark {
+    position        : relative;
+    display         : inline-block;
+    width           : 20px;
+    height          : 20px;
+    background-color: #d5dae6;
+    border-radius   : 3px;
+    margin-right    : 10px;
+}
+
+.custom-checkbox input:checked + .checkmark {
+    background-color: #b45f10;
+}
+
+.checkmark:after {
+    content : "";
+    position: absolute;
+    display : none;
+}
+
+.custom-checkbox input:checked + .checkmark:after {
+    display: block;
+}
+
+.custom-checkbox .checkmark:after {
+    left        : 7px;
+    top         : 3px;
+    width       : 5px;
+    height      : 10px;
+    border      : solid rgb(236, 199, 143);
+    border-width: 0 2px 2px 0;
+    transform   : rotate(45deg);
+}

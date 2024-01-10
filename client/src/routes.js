@@ -1,6 +1,6 @@
 import { MAIN_ROUTE, LOGIN_ROUTE, CONTACT_ROUTE, COFFEE_HOUSES_ROUTE, 
     COFFEE_HOUSE_CARD_ROUTE, REGISTRATION_ROUTE, PROFILE_USER_ROUTE, 
-    PRODUCT_MENU_ROUTE, PRODUCT_ROUTE } from "./utils/consts"
+    PRODUCT_MENU_ROUTE, PRODUCT_ROUTE, BASKET_ROUTE } from "./utils/consts"
 import MainPage from './pages/main/Main';
 import Auth from './components/authorization/Authorization'
 import ContactsPage from './pages/contacts/Contacts';
@@ -10,6 +10,7 @@ import Regist from './components/registration/Registration';
 import ProfileUser from './pages/profileUser/ProfileUser';
 import ProductsMenu from './pages/menuProducts/MenuProducts';
 import ProductCard from './components/productCard/ProductCard';
+import Basket from './pages/basket/Basket'
 
 // страницы на которые может перейти авторизованный пользователь //
 export const authRoutes = [
@@ -17,6 +18,10 @@ export const authRoutes = [
         path: PROFILE_USER_ROUTE,
         Component: ProfileUser
     },
+    {
+        path: BASKET_ROUTE,
+        Component:Basket
+    }
 ]
 
 // страницы на которые может перейти каждый пользователь

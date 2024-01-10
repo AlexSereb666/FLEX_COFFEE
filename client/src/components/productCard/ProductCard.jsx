@@ -1,17 +1,51 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState, useContext } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import './ProductCard.css';
 import StarImg from '../../assets/img/star.png'
 import BtnCustom from '../../utils/button/btn-form/BtnForm'
 import { fetchOneProduct } from '../../http/productAPI';
+import { Context } from '../../index'
+import { getBasket, addToBasket } from '../../http/basketAPI'
+import MessageBox from '../messageBox/MessageBox';
+import { jwtDecode } from 'jwt-decode'
+import { LOGIN_ROUTE } from '../../utils/consts';
 
 const ProductCard = () => {
     const [product, setProduct] = useState({info: []})
     const { id } = useParams()
+    const navigate = useNavigate()
+
+    //const { basket } = useContext(Context)
+    const { user } = useContext(Context)
+
+    const [showModalMessageBox, setShowModalMessageBox] = useState(false);
+    const [messageBoxMessage, setMessageBoxMessage] = useState("");
 
     useEffect(() => {
         fetchOneProduct(id).then(data => setProduct(data))
     }, [])
+
+    const addProductToBasket = () => {
+        if (!user.isAuth) {
+            navigate(LOGIN_ROUTE)
+            return
+        }
+
+        const userToken = jwtDecode(localStorage.getItem('token'))
+        addToBasket(userToken.id, id).then(data => {
+            setMessageBoxMessage("Продукт успешно добавлен в корзину")
+            handleOpeneModalMessageBox()
+        })
+        //getBasket(user.id).then(data => basket.setBasket(data.basket_products))
+    }
+
+    const handleOpeneModalMessageBox = () => {
+        setShowModalMessageBox(true);
+    }
+
+    const handleCloseModalMessageBox = () => {
+        setShowModalMessageBox(false);
+    }
 
     return (
         <div className="product-card">
@@ -34,6 +68,7 @@ const ProductCard = () => {
                     </div>
                     <BtnCustom
                         text="Добавить в корзину"
+                        onClick={addProductToBasket}
                     />
                 </div>
             </div>
@@ -45,6 +80,12 @@ const ProductCard = () => {
                     </div>
                 )}
             </div>
+            {showModalMessageBox && (
+                <MessageBox
+                    onClose={handleCloseModalMessageBox} 
+                    message={messageBoxMessage}
+                />
+            )}
         </div>
     );
 }

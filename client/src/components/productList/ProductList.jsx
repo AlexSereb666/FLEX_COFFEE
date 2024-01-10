@@ -20,7 +20,6 @@ const ProductList = observer(() => {
             product.setProducts(data.rows)
             product.setTotalCount(data.count)
         })
-        console.log(JSON.stringify(product.products))
     }, [product.page, product.selectedType, product.selectedView])
 
     return (

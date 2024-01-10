@@ -7,17 +7,26 @@ import exitIcon from '../../assets/img/exit.png'
 import './Navbar.css'
 import { Context } from '../../index';
 import { LOGIN_ROUTE, REGISTRATION_ROUTE, CONTACT_ROUTE, COFFEE_HOUSES_ROUTE, 
-  PROFILE_USER_ROUTE, PRODUCT_MENU_ROUTE } from '../../utils/consts';
+  PROFILE_USER_ROUTE, PRODUCT_MENU_ROUTE, BASKET_ROUTE } from '../../utils/consts';
 import { observer } from 'mobx-react-lite'
 import { fetchViews, fetchTypes } from '../../http/productAPI';
+import { jwtDecode } from 'jwt-decode'
+import { getBasket } from '../../http/basketAPI'
 
 const Navbar = observer(() => {
   const { user } = useContext(Context)
-  const { product } = useContext(Context);
-
+  const { product } = useContext(Context)
+  const { basket } = useContext(Context)
+  
   useEffect(() => {
       fetchViews().then(data => product.setViews(data))
       fetchTypes().then(data => product.setTypes(data))
+
+      const storedToken = localStorage.getItem('token');
+      if (storedToken) {
+        const { id } = jwtDecode(storedToken)
+        getBasket(id).then(data => basket.setBasket(data.basket_products))
+      }
   }, [])
 
   const navigate = useNavigate()
@@ -50,7 +59,7 @@ const Navbar = observer(() => {
         <div className='navbar__auth'>
           {!!localStorage.getItem('token') ? (
             <>
-              <Link><img className='navbar__basket-img' src={backetIcon} alt="Basket_img" /></Link>
+              <Link to={BASKET_ROUTE} ><img className='navbar__basket-img' src={backetIcon} alt="Basket_img" /></Link>
               <Link to={PROFILE_USER_ROUTE} ><img className='navbar__avatar-img' src={avatarDefault} alt="Avatar_img" /></Link>
               <img className='navbar__exit-img' src={exitIcon} alt="Exit_img" onClick={() => logOut()} />
             </>
