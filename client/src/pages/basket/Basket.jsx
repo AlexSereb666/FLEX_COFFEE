@@ -3,6 +3,7 @@ import './Basket.css'
 import { observer } from 'mobx-react-lite'
 import { jwtDecode } from 'jwt-decode'
 import { getBasket, removeFromBasket } from '../../http/basketAPI'
+import { addToOrder } from '../../http/orderAPI';
 import { Context } from '../../index'
 import Btn from '../../utils/button/btn-form/BtnForm'
 import { fetchOneProduct } from '../../http/productAPI'
@@ -65,25 +66,48 @@ const Basket = observer(() => {
         }
     };
 
+    const clearSelectedProduct = async () => {
+        const { id } = jwtDecode(localStorage.getItem('token'));
+        const data = await getBasket(id);
+        const basket_products = await Promise.all(data.basket_products.map(item => item));
+        
+        basket_products.forEach(product => {
+            const selectedProduct = selectedProducts.find(selected => selected.id === product.productId);
+            if (selectedProduct) {
+                removeFromBasket(id, product.id);
+            }
+        });
+
+        // Обновляем состояние basketProducts после удаления продуктов
+        setBasketProducts(prevProducts => prevProducts.filter(product => !selectedProducts.includes(product)));
+
+        // Очищаем выбранные продукты
+        setSelectedProducts([]);
+    }
+
     const deleteProductsBasket = async () => {
         if (selectedProducts.length > 0) {
-            const { id } = jwtDecode(localStorage.getItem('token'));
-            const data = await getBasket(id);
-            const basket_products = await Promise.all(data.basket_products.map(item => item));
-           
-            basket_products.forEach(product => {
-                const selectedProduct = selectedProducts.find(selected => selected.id === product.productId);
-                if (selectedProduct) {
-                    removeFromBasket(id, product.id);
-                }
-            });
-
-            // Обновляем состояние basketProducts после удаления продуктов
-            setBasketProducts(prevProducts => prevProducts.filter(product => !selectedProducts.includes(product)));
-
-            // Очищаем выбранные продукты
-            setSelectedProducts([]);
+            clearSelectedProduct()
+            return
         }
+        setMessageBoxMessage("Выберите продукт")
+        handleOpeneModalMessageBox()
+    }
+
+    const addOrder = async () => {
+        if (selectedProducts.length > 0) {
+            const { id } = jwtDecode(localStorage.getItem('token'));
+            selectedProducts.forEach(item => {
+                addToOrder(id, item.id)
+            })
+
+            setMessageBoxMessage("Заказ успешно оформлен")
+            handleOpeneModalMessageBox()
+            clearSelectedProduct()
+            return
+        }
+        setMessageBoxMessage("Выберите продукт")
+        handleOpeneModalMessageBox()
     }
 
     return (
@@ -120,7 +144,10 @@ const Basket = observer(() => {
                     text="Удалить выбранные" 
                     onClick={deleteProductsBasket}
                 />
-                <Btn text="Оформить заказ" />
+                <Btn 
+                    text="Оформить заказ"
+                    onClick={addOrder}
+                />
             </div>
             {showModalMessageBox && (
                 <MessageBox

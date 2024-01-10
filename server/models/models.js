@@ -57,7 +57,18 @@ const Feedback = sequelize.define('Feedback', {
     dateReq: {type:DataTypes.DATE}
 })
 
+const Order = sequelize.define('order', {
+    id: {type:DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    date: {type:DataTypes.DATE}
+})
+
 // связи //
+User.hasMany(Order)
+Order.belongsTo(User)
+
+Product.hasMany(Order)
+Order.hasMany(Product)
+
 User.hasOne(Basket)
 Basket.belongsTo(User)
 
@@ -92,4 +103,5 @@ module.exports = {
     Product_view,
     Rating,
     Feedback,
+    Order
 }
