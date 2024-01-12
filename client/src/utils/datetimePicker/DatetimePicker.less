@@ -1,0 +1,56 @@
+@import '../../utils/colors';
+@import '../../utils/fonts';
+
+@font-face {
+    font-family: 'arnamu';
+    src: url('../../assets/fonts/arnamu.ttf'); 
+}
+
+@font-face {
+    font-family: 'PostalShrift';
+    src: url('../../assets/fonts/PostalShrift.ttf');
+} 
+
+.datetime-picker-container {
+    display       : flex;
+    flex-direction: row;
+    align-items   : center;
+
+    & span {
+        padding-right: 15px;
+        font-size    : 24px;
+        font-family  : 'arnamu';
+    }
+}
+
+.custom-datepicker {
+    font-size       : 16px;
+    padding         : 8px;
+    border          : 2px solid @main-page-text;
+    border-radius   : 4px;
+    color           : @main-page-text;
+    background-color: @main-page-btn-hover;
+    font-family     : 'PostalShrift';
+}
+
+.react-datepicker-popper {
+    z-index: 1;
+}
+
+.react-datepicker {
+    font-family: 'arnamu';
+}
+
+.react-datepicker__header {
+    //background-color: @main-page-btn-active;
+    //color: red !important;
+}  
+
+.react-datepicker__day {
+    //color: @main-page-text; /* Цвет текста для дней месяца */
+}
+
+.react-datepicker__day--selected {
+    background-color: @color-calendar-active-day; /* Цвет фона выбранного дня */
+    color           : @border-avatar; /* Цвет текста для выбранного дня */
+}

@@ -9,5 +9,6 @@ router.get('/auth', authMiddleware, userController.check)
 router.delete('/kick', userController.kick)
 router.post('/change-password', userController.changePassword);
 router.post('/change-profile', userController.changeProfile);
+router.get('/:id', authMiddleware, userController.getUser)
 
 module.exports = router

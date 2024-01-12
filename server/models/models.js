@@ -59,7 +59,8 @@ const Feedback = sequelize.define('Feedback', {
 
 const Order = sequelize.define('order', {
     id: {type:DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    date: {type:DataTypes.DATE}
+    date: {type:DataTypes.DATE},
+    status: {type:DataTypes.STRING}
 })
 
 // связи //

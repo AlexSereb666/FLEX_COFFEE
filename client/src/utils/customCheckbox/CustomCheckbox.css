@@ -12,6 +12,9 @@
   cursor: pointer;
   font-size: 16px;
 }
+.custom-checkbox__text {
+  font-size: 26px;
+}
 .custom-checkbox input {
   display: none;
 }

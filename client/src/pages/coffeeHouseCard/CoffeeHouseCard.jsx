@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import './CoffeeHouseCard.css';
 
 import Slider from '../../components/slider/Slider';
@@ -13,9 +13,13 @@ import img2 from '../../assets/img/coffee-houses-2.jpg';
 import img3 from '../../assets/img/coffee-houses-3.jpg';
 import img4 from '../../assets/img/coffee-houses-4.jpg';
 
+import { PRODUCT_MENU_ROUTE } from '../../utils/consts';
+
 function CoffeeHouseCard() {
     const [selectedImage, setSelectedImage] = useState(null);
     const [selectedImageIndex, setSelectedImageIndex] = useState(-1);
+
+    const navigate = useNavigate()
 
     let { id } = useParams();
 
@@ -128,7 +132,7 @@ function CoffeeHouseCard() {
                         {selectedCoffeeHouse.description}
                     </div>
                     <div className='coffee-house-card__left__buttons'>
-                        <button className="coffee-card-button" onClick={() => {console.log('Меню')}}>
+                        <button className="coffee-card-button" onClick={() => {navigate(PRODUCT_MENU_ROUTE)}}>
                             Меню кофейни
                         </button>
                         <button className="coffee-card-button" onClick={() => {console.log('Отзывы')}}>

@@ -98,7 +98,7 @@ const Basket = observer(() => {
         if (selectedProducts.length > 0) {
             const { id } = jwtDecode(localStorage.getItem('token'));
             selectedProducts.forEach(item => {
-                addToOrder(id, item.id)
+                addToOrder(id, item.id, "В ожидании")
             })
 
             setMessageBoxMessage("Заказ успешно оформлен")

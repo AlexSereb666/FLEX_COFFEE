@@ -21,7 +21,7 @@ export const authRoutes = [
     {
         path: BASKET_ROUTE,
         Component:Basket
-    }
+    },
 ]
 
 // страницы на которые может перейти каждый пользователь

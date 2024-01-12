@@ -56,3 +56,16 @@ export const changeProfile = async (newLogin, newEmail, newPhone, userId) => {
         }
     }
 }
+
+export const getUserById = async (userId) => {
+    try {
+        const { data } = await $authHost.get(`api/user/${userId}`);
+        return data;
+    } catch (error) {
+        if (error.response) {
+            return error.response.data.message;
+        } else {
+            return 'Внутренняя ошибка сервера';
+        }
+    }
+}

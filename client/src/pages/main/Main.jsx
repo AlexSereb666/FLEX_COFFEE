@@ -10,8 +10,12 @@ import CoffeeBeans from '../../assets/img/coffee-beans.png';
 import InformationBlock from '../../components/InformationBlock/InformationBlock';
 import ButtonMain from '../../utils/button/main-page-btn/ButtonMain';
 import SocialNetwork from '../../components/social-network/SocialNetwork';
+import { useNavigate } from 'react-router-dom';
+import { PRODUCT_MENU_ROUTE } from '../../utils/consts';
 
 function Main() {
+  const navigate = useNavigate()
+
   return (
     <div className='main-page'>
       <div className="main-page__content">
@@ -56,7 +60,7 @@ function Main() {
               />
               <ButtonMain
                 text={'Оформить заказ'}
-                onClick={() => console.log("Кнопка была нажата!")}
+                onClick={() => navigate(PRODUCT_MENU_ROUTE)}
               />
             </div>
         </div>

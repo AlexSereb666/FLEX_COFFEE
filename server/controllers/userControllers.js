@@ -129,6 +129,16 @@ class userController {
             next(error);
         }
     }
+
+    async getUser(req, res, next) {
+        try {
+            const {id} = req.params;
+            const data = await User.findOne({where: {id: id}});
+            return res.json(data);
+        } catch (e) {
+            next(ApiError.internal(e.message));
+        }
+    }
 }
 
 module.exports = new userController()

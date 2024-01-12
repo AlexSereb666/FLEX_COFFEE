@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './ProfileUser.css';
 import BtnForm from '../../utils/button/btn-form/BtnForm'
 import defaultAvatar from '../../assets/img/cosmo.jpg'
@@ -6,13 +7,18 @@ import { jwtDecode } from 'jwt-decode'
 import ModalEditPassword from '../../components/editProfileModalPassword/EditProfileModalPassword'
 import ModalEditProfile from '../../components/editProfileModal/EditProfileModal'
 import AdminMenu from '../../components/adminMenu/AdminMenu';
+import { BASKET_ROUTE } from '../../utils/consts';
+import Orders from '../../components/orders/Orders';
 
 function ProfileUser() {
   const user = jwtDecode(localStorage.getItem('token'))
 
+  const navigate = useNavigate()
+
   const [showModalEditPassword, setShowModalEditPassword] = useState(false);
   const [showModalEditProfile, setShowModalEditProfile] = useState(false);
   const [showAdminMenu, setShowAdminMenu] = useState(false);
+  const [showModalOrders, setShowModalOrders] = useState(false);
 
   const handleCloseModalEditPassword = () => {
     setShowModalEditPassword(false);
@@ -36,6 +42,14 @@ function ProfileUser() {
 
   const handleOpenAdminMenu = () => {
     setShowAdminMenu(true);
+  }
+
+  const handleOpenModalOrders = () => {
+    setShowModalOrders(true);
+  }
+
+  const handleCloseModalOrders = () => {
+    setShowModalOrders(false);
   }
 
   return (
@@ -79,6 +93,7 @@ function ProfileUser() {
         />
         <BtnForm
             text="Моя корзина"
+            onClick={() => navigate(BASKET_ROUTE)}
         />
         <BtnForm
             text="История покупок"
@@ -94,6 +109,12 @@ function ProfileUser() {
             <BtnForm
               text="Меню админа"
               onClick={handleOpenAdminMenu}
+            />
+        )}
+        {user.role === 'BARISTA' && (
+            <BtnForm
+              text="Меню заказов"
+              onClick={handleOpenModalOrders}
             />
         )}
       </div>
@@ -112,6 +133,11 @@ function ProfileUser() {
       {showAdminMenu && (
         <AdminMenu
           onClose={handleCloseAdminMenu} 
+        />
+      )}
+      {showModalOrders && (
+        <Orders
+          onClose={handleCloseModalOrders} 
         />
       )}
     </div>

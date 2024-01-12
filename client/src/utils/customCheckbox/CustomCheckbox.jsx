@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './CustomCheckbox.css';
 
-const CustomCheckbox = ({ label, productId, onChange }) => {
+const CustomCheckbox = ({ label, productId, onChange, onChangeSolo }) => {
   const [checked, setChecked] = useState(true); // По умолчанию выделен
 
   const handleCheckboxChange = () => {
@@ -10,6 +10,7 @@ const CustomCheckbox = ({ label, productId, onChange }) => {
 
     // Вызываем onChange с новым состоянием
     onChange && onChange(productId, newCheckedState);
+    onChangeSolo && onChangeSolo(newCheckedState);
   };
 
   return (
@@ -20,7 +21,7 @@ const CustomCheckbox = ({ label, productId, onChange }) => {
         onChange={handleCheckboxChange}
       />
       <span className="checkmark"></span>
-      {label}
+      <span className="custom-checkbox__text">{label}</span>
     </label>
   );
 };
